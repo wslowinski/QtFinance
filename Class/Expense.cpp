@@ -9,6 +9,16 @@ Expense::Expense():
 {
 }
 
+Expense::Expense(const QDate& date, const QString& category, double expense,
+    const QString& shopName):
+    m_id(-1),
+    m_date(date),
+    m_category(category),
+    m_expense(expense),
+    m_shopName(shopName)
+{
+}
+
 Expense::Expense(int id, const QDate& date, const QString& category, double expense,
     const QString& shopName):
     m_id(id),

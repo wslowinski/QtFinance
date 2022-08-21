@@ -7,6 +7,8 @@ class Expense
 {
 public:
     Expense();
+    Expense(const QDate& date, const QString& category, double expense,
+        const QString& shopName);
     Expense(int id, const QDate& date, const QString& category, double expense,
         const QString& shopName);
     ~Expense() = default;

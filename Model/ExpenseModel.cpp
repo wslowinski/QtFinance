@@ -29,7 +29,7 @@ int ExpenseModel::columnCount(const QModelIndex& parent) const
     return 5;
 }
 
-QVariant ExpenseModel::data(const QModelIndex &index, int role) const
+QVariant ExpenseModel::data(const QModelIndex& index, int role) const
 {
     if(!isValidIndex(index))
     {

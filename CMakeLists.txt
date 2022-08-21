@@ -28,6 +28,12 @@ set(PROJECT_SOURCES
         DatabaseClass/ExpenseDao.cpp
         Model/ExpenseModel.h
         Model/ExpenseModel.cpp
+        Widget/ExpenseWidget.h
+        Widget/ExpenseWidget.cpp
+        Widget/ExpenseWidget.ui
+        Dialog/ExpenseDialog.h
+        Dialog/ExpenseDialog.cpp
+        Dialog/ExpenseDialog.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
