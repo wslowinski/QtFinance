@@ -1,5 +1,14 @@
 #include "Expense.h"
 
+Expense::Expense():
+    m_id(-1),
+    m_date(QDate()),
+    m_category(""),
+    m_expense(0.0),
+    m_shopName("")
+{
+}
+
 Expense::Expense(int id, const QDate& date, const QString& category, double expense,
     const QString& shopName):
     m_id(id),

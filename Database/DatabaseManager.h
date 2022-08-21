@@ -17,11 +17,12 @@ public:
     ~DatabaseManager();
     static DatabaseManager& instance();
 
+    const ExpenseDao m_expenseDao;
+
 private:
     void updateDatabase();
 
     QSqlDatabase m_database;
-    const ExpenseDao m_expenseDao;
 };
 
 #endif

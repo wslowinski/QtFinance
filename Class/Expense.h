@@ -6,6 +6,7 @@
 class Expense
 {
 public:
+    Expense();
     Expense(int id, const QDate& date, const QString& category, double expense,
         const QString& shopName);
     ~Expense() = default;

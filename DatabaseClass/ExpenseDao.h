@@ -12,10 +12,10 @@ class ExpenseDao
 public:
     explicit ExpenseDao(QSqlDatabase& database);
 
-    void add(Expense& expense);
-    void update(Expense& expense);
-    void remove(int id);
-    std::vector<Expense> getAll();
+    void add(Expense& expense) const;
+    void update(Expense& expense) const;
+    void remove(int id) const;
+    std::vector<Expense> getAll() const;
 
 private:
     QSqlDatabase& m_database;

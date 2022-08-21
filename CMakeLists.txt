@@ -26,6 +26,8 @@ set(PROJECT_SOURCES
         Class/Expense.cpp
         DatabaseClass/ExpenseDao.h
         DatabaseClass/ExpenseDao.cpp
+        Model/ExpenseModel.h
+        Model/ExpenseModel.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

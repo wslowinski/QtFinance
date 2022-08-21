@@ -6,7 +6,7 @@ ExpenseDao::ExpenseDao(QSqlDatabase& database):
 {
 }
 
-void ExpenseDao::add(Expense& expense)
+void ExpenseDao::add(Expense& expense) const
 {
     QSqlQuery query(m_database);
     query.prepare("INSERT INTO expenses(date, category, expense, shopname) \
@@ -20,7 +20,7 @@ void ExpenseDao::add(Expense& expense)
     expense.setID(query.lastInsertId().toInt());
 }
 
-void ExpenseDao::update(Expense& expense)
+void ExpenseDao::update(Expense& expense) const
 {
     QSqlQuery query(m_database);
     query.prepare("UPDATE expenses SET \
@@ -38,7 +38,7 @@ void ExpenseDao::update(Expense& expense)
     DatabaseManager::debugQuery(query);
 }
 
-void ExpenseDao::remove(int id)
+void ExpenseDao::remove(int id) const
 {
     QSqlQuery query(m_database);
     query.prepare("DELETE FROM expenses WHERE id = (:id)");
@@ -47,7 +47,7 @@ void ExpenseDao::remove(int id)
     DatabaseManager::debugQuery(query);
 }
 
-std::vector<Expense> ExpenseDao::getAll()
+std::vector<Expense> ExpenseDao::getAll() const
 {
     QSqlQuery query("SELECT * FROM expenses", m_database);
     query.exec();
