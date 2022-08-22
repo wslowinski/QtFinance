@@ -11,7 +11,7 @@ ExpenseDialog::ExpenseDialog(Expense& expense, QWidget *parent) :
     connect(ui->btnBox, &QDialogButtonBox::accepted, this, &ExpenseDialog::accept);
     connect(ui->btnBox, &QDialogButtonBox::rejected, this, &ExpenseDialog::reject);
 
-    ui->dtDate->setDate(QDate::currentDate());
+    ui->dtDate->setDate(m_expense.getDate());
     QStringList list = QStringList() << "Beauty"
                                      << "Bills"
                                      << "Drugstore"

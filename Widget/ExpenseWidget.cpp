@@ -1,6 +1,6 @@
 #include "ExpenseWidget.h"
 #include "ui_ExpenseWidget.h"
-#include "Dialog/ExpenseDialog.h""
+#include "Dialog/ExpenseDialog.h"
 #include "Model/ExpenseModel.h"
 
 ExpenseWidget::ExpenseWidget(QWidget* parent):

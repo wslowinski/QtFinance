@@ -9,11 +9,19 @@ MainWindow::MainWindow(QWidget *parent):
     m_expenseWidget(new ExpenseWidget(this))
 {
     ui->setupUi(this);
+    connect(ui->tbtnExit, &QToolButton::clicked, this, &QMainWindow::close);
     ui->tabWidget->addTab(m_expenseWidget, "Expenses");
+
 }
 
 MainWindow::~MainWindow()
 {
+    close();
     delete ui;
+}
+
+void MainWindow::close()
+{
+    QMainWindow::close();
 }
 

@@ -2,7 +2,7 @@
 
 Expense::Expense():
     m_id(-1),
-    m_date(QDate()),
+    m_date(QDate::currentDate()),
     m_category(""),
     m_expense(0.0),
     m_shopName("")
