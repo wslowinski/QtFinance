@@ -8,6 +8,7 @@
 #include <QDebug>
 
 #include "DatabaseClass/ExpenseDao.h"
+#include "DatabaseClass/IncomeDao.h"
 
 class DatabaseManager
 {
@@ -18,6 +19,7 @@ public:
     static DatabaseManager& instance();
 
     const ExpenseDao m_expenseDao;
+    const IncomeDao m_incomeDao;
 
 private:
     void updateDatabase();

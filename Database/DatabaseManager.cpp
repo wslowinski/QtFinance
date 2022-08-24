@@ -1,8 +1,9 @@
 #include "DatabaseManager.h"
 
 DatabaseManager::DatabaseManager(const QString& path):
-    m_database(QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "SQLITE"))),
-    m_expenseDao(m_database)
+    m_expenseDao(m_database),
+    m_incomeDao(m_database),
+    m_database(QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "SQLITE")))
 {
     m_database.setDatabaseName(path);
     bool openStatus = m_database.open();
@@ -49,6 +50,16 @@ void DatabaseManager::updateDatabase()
                         category VARCHAR(50), \
                         expense FLOAT, \
                         shopname VARCHAR(50))");
+        DatabaseManager::debugQuery(query);
+    }
+    if(!m_database.tables().contains("incomes"))
+    {
+        QSqlQuery query(m_database);
+        query.exec("CREATE TABLE incomes (\
+                        id INTEGER PRIMARY KEY AUTOINCREMENT, \
+                        date DATE, \
+                        title VARCHAR(50), \
+                        income FLOAT)");
         DatabaseManager::debugQuery(query);
     }
 }

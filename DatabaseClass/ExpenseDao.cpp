@@ -49,7 +49,8 @@ void ExpenseDao::remove(int id) const
 
 std::vector<Expense> ExpenseDao::getAll() const
 {
-    QSqlQuery query("SELECT * FROM expenses", m_database);
+    QSqlQuery query("SELECT id, date, category, expense, shopname FROM expenses",
+                    m_database);
     query.exec();
     DatabaseManager::debugQuery(query);
 

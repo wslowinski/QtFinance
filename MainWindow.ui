@@ -91,7 +91,8 @@
       <string>...</string>
      </property>
      <property name="icon">
-      <iconset theme="system-shutdown"/>
+      <iconset theme="system-shutdown">
+       <normaloff>.</normaloff>.</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -134,7 +135,8 @@
       <string>...</string>
      </property>
      <property name="icon">
-      <iconset theme="application-x-executable"/>
+      <iconset theme="application-x-executable">
+       <normaloff>.</normaloff>.</iconset>
      </property>
      <property name="iconSize">
       <size>

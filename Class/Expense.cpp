@@ -1,7 +1,7 @@
 #include "Expense.h"
 
 Expense::Expense():
-    m_id(-1),
+    m_id(0),
     m_date(QDate::currentDate()),
     m_category(""),
     m_expense(0.0),
@@ -11,7 +11,7 @@ Expense::Expense():
 
 Expense::Expense(const QDate& date, const QString& category, double expense,
     const QString& shopName):
-    m_id(-1),
+    m_id(0),
     m_date(date),
     m_category(category),
     m_expense(expense),

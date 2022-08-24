@@ -34,6 +34,12 @@ set(PROJECT_SOURCES
         Dialog/ExpenseDialog.h
         Dialog/ExpenseDialog.cpp
         Dialog/ExpenseDialog.ui
+        DatabaseClass/IncomeDao.h
+        DatabaseClass/IncomeDao.cpp
+        Class/Income.h
+        Class/Income.cpp
+        Model/IncomeModel.h
+        Model/IncomeModel.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

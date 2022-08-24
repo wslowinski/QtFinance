@@ -26,6 +26,7 @@ int ExpenseModel::rowCount(const QModelIndex& parent) const
 
 int ExpenseModel::columnCount(const QModelIndex& parent) const
 {
+    Q_UNUSED(parent);
     return 5;
 }
 
@@ -95,7 +96,7 @@ QHash<int, QByteArray> ExpenseModel::roleNames() const
     roles[Roles::DATE_ROLE] = "Date";
     roles[Roles::CATEGORY_ROLE] = "Category";
     roles[Roles::EXPENSE_ROLE] = "Expense";
-    roles[Roles::SHOP_NAME_ROLE] = "Shop name";
+    roles[Roles::SHOP_NAME_ROLE] = "ShopName";
     return roles;
 }
 

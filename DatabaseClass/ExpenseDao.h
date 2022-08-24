@@ -4,7 +4,6 @@
 #include "Class/Expense.h"
 
 #include <QSqlDatabase>
-#include <memory>
 #include <vector>
 
 class ExpenseDao
