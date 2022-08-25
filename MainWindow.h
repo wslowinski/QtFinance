@@ -8,6 +8,7 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class ExpenseWidget;
+class IncomeWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -24,5 +25,6 @@ private:
     Ui::MainWindow *ui;
 
     ExpenseWidget* m_expenseWidget;
+    IncomeWidget* m_incomeWidget;
 };
-#endif // MAINWINDOW_H
+#endif

@@ -40,6 +40,12 @@ set(PROJECT_SOURCES
         Class/Income.cpp
         Model/IncomeModel.h
         Model/IncomeModel.cpp
+        Dialog/IncomeDialog.h
+        Dialog/IncomeDialog.cpp
+        Dialog/IncomeDialog.ui
+        Widget/IncomeWidget.h
+        Widget/IncomeWidget.cpp
+        Widget/IncomeWidget.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
