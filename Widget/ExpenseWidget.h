@@ -18,6 +18,7 @@ public:
     ~ExpenseWidget();
 
     void setModel(ExpenseModel* model);
+    void setDesign();
 
 private slots:
     void add();

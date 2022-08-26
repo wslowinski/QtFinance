@@ -37,22 +37,46 @@ QVariant ExpenseModel::data(const QModelIndex& index, int role) const
         return QVariant();
     }
     const Expense& expense = m_expenses.at(index.row());
-    switch(role) {
+    switch(role)
+    {
         case Roles::ID_ROLE:
-            return QVariant::fromValue(expense);
-        case Qt::DisplayRole: {
-            switch(index.column()) {
+        return QVariant::fromValue(expense);
+        case Qt::DisplayRole:
+        {
+            switch(index.column())
+            {
                 case ColumnName::ID:
-                    return expense.getID();
+                return expense.getID();
                 case ColumnName::DATE:
-                    return expense.getDate();
+                return expense.getDate();
                 case ColumnName::CATEGORY:
-                    return expense.getCategory();
+                return expense.getCategory();
                 case ColumnName::EXPENSE:
-                    return expense.getExpense();
+                return expense.getExpense();
                 case ColumnName::SHOP_NAME:
-                    return expense.getShopName();
+                return expense.getShopName();
             }
+        }
+    }
+    return QVariant();
+}
+
+QVariant ExpenseModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+    {
+        switch(section)
+        {
+            case ColumnName::ID:
+            return QString("Expense ID");
+            case ColumnName::DATE:
+            return QString("Date");
+            case ColumnName::CATEGORY:
+            return QString("Category");
+            case ColumnName::EXPENSE:
+            return QString("Expense [zł]");
+            case ColumnName::SHOP_NAME:
+            return QString("Shop name / title");
         }
     }
     return QVariant();
@@ -96,7 +120,7 @@ QHash<int, QByteArray> ExpenseModel::roleNames() const
     roles[Roles::DATE_ROLE] = "Date";
     roles[Roles::CATEGORY_ROLE] = "Category";
     roles[Roles::EXPENSE_ROLE] = "Expense";
-    roles[Roles::SHOP_NAME_ROLE] = "ShopName";
+    roles[Roles::SHOP_NAME_ROLE] = "Shop name";
     return roles;
 }
 

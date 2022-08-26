@@ -11,6 +11,7 @@ ExpenseWidget::ExpenseWidget(QWidget* parent):
     ui->setupUi(this);
     connect(ui->btnAdd, &QPushButton::clicked, this, &ExpenseWidget::add);
     setModel(m_expenseModel);
+    setDesign();
 }
 
 ExpenseWidget::~ExpenseWidget()
@@ -21,6 +22,25 @@ ExpenseWidget::~ExpenseWidget()
 void ExpenseWidget::setModel(ExpenseModel* model)
 {
     ui->tabExpenses->setModel(model);
+    ui->tabExpenses->horizontalHeader()->setVisible(true);
+    ui->tabExpenses->resizeColumnsToContents();
+    ui->tabExpenses->show();
+}
+
+void ExpenseWidget::setDesign()
+{
+//    ui->tabExpenses->setStyleSheet("QTableView{"
+//                                   "background-color: #FFCCE5;"
+//                                   "alternate-background-color: #FF99CC;"
+//                                   "selection-background-color: #FF3399;"
+//                                   "}");
+    ui->tabExpenses->setStyleSheet("QTableView{"
+                                   "selection-background-color: #FFB266;"
+                                   "}");
+    ui->tabExpenses->setAlternatingRowColors(true);
+    ui->tabExpenses->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tabExpenses->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tabExpenses->setTextElideMode(Qt::ElideRight);
 }
 
 void ExpenseWidget::add()
