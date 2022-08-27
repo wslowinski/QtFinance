@@ -20,6 +20,7 @@ public:
     void setModel(ExpenseModel* model);
     void setDesign();
 
+
 private slots:
     void add();
     void edit();
