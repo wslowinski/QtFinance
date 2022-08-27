@@ -57,6 +57,26 @@ QVariant IncomeModel::data(const QModelIndex& index, int role) const
     return QVariant();
 }
 
+QVariant IncomeModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+    {
+        switch(section)
+        {
+            case ColumnName::ID:
+            return QString("Income ID");
+            case ColumnName::DATE:
+            return QString("Date");
+            case ColumnName::TITLE:
+            return QString("Title");
+            case ColumnName::INCOME:
+            return QString("Income [zł]");
+        }
+    }
+    return QVariant();
+}
+
+
 bool IncomeModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
     if(!isValidIndex(index) || role != Roles::ID_ROLE)

@@ -23,6 +23,7 @@ public:
 
     explicit ExpenseModel(QObject* parent = nullptr);
     QModelIndex add(const Expense& expense);
+    QModelIndex edit(const Expense& expense);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;

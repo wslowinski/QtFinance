@@ -11,6 +11,7 @@ IncomeWidget::IncomeWidget(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->btnAdd, &QPushButton::clicked, this, &IncomeWidget::add);
     setModel(m_incomeModel);
+    setDesign();
 }
 
 IncomeWidget::~IncomeWidget()
@@ -21,6 +22,17 @@ IncomeWidget::~IncomeWidget()
 void IncomeWidget::setModel(IncomeModel* model)
 {
     ui->tabIncomes->setModel(model);
+}
+
+void IncomeWidget::setDesign()
+{
+
+    ui->tabIncomes->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tabIncomes->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tabIncomes->setTextElideMode(Qt::ElideRight);
+    ui->tabIncomes->horizontalHeader()->setVisible(true);
+    ui->tabIncomes->resizeColumnsToContents();
+    ui->tabIncomes->show();
 }
 
 void IncomeWidget::add()

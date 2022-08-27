@@ -22,9 +22,6 @@ ExpenseWidget::~ExpenseWidget()
 void ExpenseWidget::setModel(ExpenseModel* model)
 {
     ui->tabExpenses->setModel(model);
-    ui->tabExpenses->horizontalHeader()->setVisible(true);
-    ui->tabExpenses->resizeColumnsToContents();
-    ui->tabExpenses->show();
 }
 
 void ExpenseWidget::setDesign()
@@ -34,13 +31,13 @@ void ExpenseWidget::setDesign()
 //                                   "alternate-background-color: #FF99CC;"
 //                                   "selection-background-color: #FF3399;"
 //                                   "}");
-    ui->tabExpenses->setStyleSheet("QTableView{"
-                                   "selection-background-color: #FFB266;"
-                                   "}");
-    ui->tabExpenses->setAlternatingRowColors(true);
+//    ui->tabExpenses->setAlternatingRowColors(true);
     ui->tabExpenses->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tabExpenses->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tabExpenses->setTextElideMode(Qt::ElideRight);
+    ui->tabExpenses->horizontalHeader()->setVisible(true);
+    ui->tabExpenses->resizeColumnsToContents();
+    ui->tabExpenses->show();
 }
 
 void ExpenseWidget::add()
@@ -57,7 +54,14 @@ void ExpenseWidget::add()
 
 void ExpenseWidget::edit()
 {
-
+    Expense expense;
+    ExpenseDialog dialog(expense);
+    auto dialogCode = dialog.exec();
+    if(dialogCode == QDialog::Accepted)
+    {
+        QModelIndex createdIndex = m_expenseModel->add(expense);
+        ui->tabExpenses->setCurrentIndex(createdIndex);
+    }
 }
 
 void ExpenseWidget::remove()

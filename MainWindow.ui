@@ -32,7 +32,7 @@
    <enum>Qt::LeftToRight</enum>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true"/>
   </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
@@ -177,6 +177,12 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuMain">
+    <property name="title">
+     <string>Main</string>
+    </property>
+   </widget>
+   <addaction name="menuMain"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>

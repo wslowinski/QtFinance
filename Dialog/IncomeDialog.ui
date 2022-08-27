@@ -14,8 +14,7 @@
    <string>Add Income</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">border-color: rgb(0, 0, 0);
-background-color: rgb(252, 252, 252);</string>
+   <string notr="true"/>
   </property>
   <widget class="QDialogButtonBox" name="btnBox">
    <property name="geometry">
