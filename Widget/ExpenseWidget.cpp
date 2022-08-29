@@ -3,6 +3,7 @@
 #include "Dialog/ExpenseDialog.h"
 #include "Model/ExpenseModel.h"
 #include "Code/Messages.h"
+#include "Code/Style.h"
 
 #include <QMessageBox>
 
@@ -15,7 +16,7 @@ ExpenseWidget::ExpenseWidget(QWidget* parent):
     connect(ui->btnAdd, &QPushButton::clicked, this, &ExpenseWidget::add);
     connect(ui->btnDelete, &QPushButton::clicked, this, &ExpenseWidget::remove);
     setModel(m_expenseModel);
-    setDesign();
+    Style::setTableViewStyle(ui->tabExpenses);
 }
 
 ExpenseWidget::~ExpenseWidget()
@@ -26,17 +27,6 @@ ExpenseWidget::~ExpenseWidget()
 void ExpenseWidget::setModel(ExpenseModel* model)
 {
     ui->tabExpenses->setModel(model);
-}
-
-void ExpenseWidget::setDesign()
-{
-    ui->tabExpenses->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->tabExpenses->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tabExpenses->setTextElideMode(Qt::ElideRight);
-    ui->tabExpenses->horizontalHeader()->setVisible(true);
-    ui->tabExpenses->resizeColumnsToContents();
-    ui->tabExpenses->setCurrentIndex(ui->tabExpenses->model()->index(0, 0));
-    ui->tabExpenses->show();
 }
 
 void ExpenseWidget::add()

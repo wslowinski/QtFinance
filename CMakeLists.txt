@@ -16,38 +16,48 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Sql)
 
 set(PROJECT_SOURCES
+        # Main
         main.cpp
         MainWindow.cpp
         MainWindow.h
         MainWindow.ui
-        Database/DatabaseManager.h
-        Database/DatabaseManager.cpp
+        # Class
         Class/Expense.h
         Class/Expense.cpp
+        Class/Income.h
+        Class/Income.cpp
+        # Code
+        Code/Messages.h
+        Code/Messages.cpp
+        Code/Style.h
+        Code/Style.cpp
+        # Database
+        Database/DatabaseManager.h
+        Database/DatabaseManager.cpp
+        # DatabaseClass
         DatabaseClass/ExpenseDao.h
         DatabaseClass/ExpenseDao.cpp
-        Model/ExpenseModel.h
-        Model/ExpenseModel.cpp
-        Widget/ExpenseWidget.h
-        Widget/ExpenseWidget.cpp
-        Widget/ExpenseWidget.ui
+        DatabaseClass/IncomeDao.h
+        DatabaseClass/IncomeDao.cpp
+        # Dialog
         Dialog/ExpenseDialog.h
         Dialog/ExpenseDialog.cpp
         Dialog/ExpenseDialog.ui
-        DatabaseClass/IncomeDao.h
-        DatabaseClass/IncomeDao.cpp
-        Class/Income.h
-        Class/Income.cpp
-        Model/IncomeModel.h
-        Model/IncomeModel.cpp
         Dialog/IncomeDialog.h
         Dialog/IncomeDialog.cpp
         Dialog/IncomeDialog.ui
+        # Model
+        Model/ExpenseModel.h
+        Model/ExpenseModel.cpp
+        Model/IncomeModel.h
+        Model/IncomeModel.cpp
+        # Widget
+        Widget/ExpenseWidget.h
+        Widget/ExpenseWidget.cpp
+        Widget/ExpenseWidget.ui
         Widget/IncomeWidget.h
         Widget/IncomeWidget.cpp
         Widget/IncomeWidget.ui
-        Code/Messages.h
-        Code/Messages.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -55,17 +65,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET QtFinance APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
         add_library(QtFinance SHARED
             ${PROJECT_SOURCES}
         )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+
     else()
         add_executable(QtFinance
             ${PROJECT_SOURCES}
