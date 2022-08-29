@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>891</width>
-    <height>491</height>
+    <height>631</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -141,6 +141,94 @@
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
+  </widget>
+  <widget class="QGroupBox" name="gbFilter">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>480</y>
+     <width>451</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Filter</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <widget class="QComboBox" name="cbPeriod">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>230</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblPeriod">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Period</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblFrom">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>From</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblTo">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>80</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>To</string>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="dtFrom">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>110</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="dtTo">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>100</y>
+      <width>110</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
