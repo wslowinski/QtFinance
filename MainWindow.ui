@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1005</width>
-    <height>709</height>
+    <width>1008</width>
+    <height>766</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,7 +25,7 @@
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
   </property>
-  <widget class="QWidget" name="centralwidget">
+  <widget class="QWidget" name="centralWidget">
    <property name="acceptDrops">
     <bool>false</bool>
    </property>
@@ -35,7 +35,7 @@
       <x>90</x>
       <y>0</y>
       <width>901</width>
-      <height>661</height>
+      <height>721</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -50,6 +50,9 @@
     <property name="currentIndex">
      <number>-1</number>
     </property>
+    <property name="movable">
+     <bool>false</bool>
+    </property>
    </widget>
    <widget class="QFrame" name="frmLeftPanel">
     <property name="geometry">
@@ -57,8 +60,11 @@
       <x>10</x>
       <y>0</y>
       <width>71</width>
-      <height>661</height>
+      <height>721</height>
      </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(246, 245, 244);</string>
@@ -73,7 +79,7 @@
      <property name="geometry">
       <rect>
        <x>5</x>
-       <y>575</y>
+       <y>630</y>
        <width>60</width>
        <height>60</height>
       </rect>
@@ -96,7 +102,7 @@
      <property name="geometry">
       <rect>
        <x>1</x>
-       <y>640</y>
+       <y>695</y>
        <width>69</width>
        <height>17</height>
       </rect>
@@ -164,7 +170,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1005</width>
+     <width>1008</width>
      <height>22</height>
     </rect>
    </property>

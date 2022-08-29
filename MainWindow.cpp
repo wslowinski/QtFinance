@@ -11,9 +11,14 @@ MainWindow::MainWindow(QWidget *parent):
     m_incomeWidget(new IncomeWidget(this))
 {
     ui->setupUi(this);
+    QMainWindow::setWindowState(Qt::WindowMaximized);
+
     connect(ui->tbtnExit, &QToolButton::clicked, this, &QMainWindow::close);
-    ui->tabWidget->addTab(m_expenseWidget, "Expenses");
-    ui->tabWidget->addTab(m_incomeWidget, "Incomes");
+    ui->tabWidget->addTab(m_expenseWidget,
+                          QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/expenses.png"), "Expenses");
+    ui->tabWidget->addTab(m_incomeWidget,
+                          QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/incomes.png"), "Incomes");
+    ui->tabWidget->setIconSize(QSize(40, 40));
 }
 
 MainWindow::~MainWindow()
