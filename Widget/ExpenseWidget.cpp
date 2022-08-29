@@ -2,6 +2,7 @@
 #include "ui_ExpenseWidget.h"
 #include "Dialog/ExpenseDialog.h"
 #include "Model/ExpenseModel.h"
+#include "Code/Messages.h"
 
 #include <QMessageBox>
 
@@ -34,7 +35,7 @@ void ExpenseWidget::setDesign()
     ui->tabExpenses->setTextElideMode(Qt::ElideRight);
     ui->tabExpenses->horizontalHeader()->setVisible(true);
     ui->tabExpenses->resizeColumnsToContents();
-    ui->tabExpenses->setCurrentIndex(ui->tabExpenses->model()->index(0,0));
+    ui->tabExpenses->setCurrentIndex(ui->tabExpenses->model()->index(0, 0));
     ui->tabExpenses->show();
 }
 
@@ -59,8 +60,5 @@ void ExpenseWidget::remove()
 {
     unsigned int currentRow = ui->tabExpenses->currentIndex().row();
     !m_expenseModel->removeRows(currentRow, 1) ?
-                QMessageBox::warning(this, tr("Delete current row"),
-                    tr("Current row could not be deleted!"), QMessageBox::Ok) :
-                QMessageBox::information(this, tr("Delete current row"),
-                    tr("Current row has been deleted!"), QMessageBox::Ok);
+        showMessage(MSG_CANNOT_DELETE_ROW) : showMessage(MSG_DELETE_ROW);
 }

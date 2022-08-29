@@ -46,6 +46,8 @@ set(PROJECT_SOURCES
         Widget/IncomeWidget.h
         Widget/IncomeWidget.cpp
         Widget/IncomeWidget.ui
+        Code/Messages.h
+        Code/Messages.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
