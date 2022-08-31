@@ -14,7 +14,15 @@ IncomeWidget::IncomeWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->btnAdd, &QPushButton::clicked, this, &IncomeWidget::add);
+    ui->btnAdd->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/add.png"));
+    ui->btnAdd->setIconSize(QSize(25, 25));
+
     connect(ui->btnDelete, &QPushButton::clicked, this, &IncomeWidget::remove);
+    ui->btnDelete->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/delete.png"));
+    ui->btnDelete->setIconSize(QSize(25, 25));
+
+    ui->btnEdit->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/edit.png"));
+    ui->btnEdit->setIconSize(QSize(25, 25));
     setModel(m_incomeModel);
     Style::setTableViewStyle(ui->tabIncomes);
 }
