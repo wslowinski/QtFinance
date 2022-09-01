@@ -24,6 +24,19 @@ ExpenseWidget::ExpenseWidget(QWidget* parent):
     ui->btnEdit->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/edit.png"));
     ui->btnEdit->setIconSize(QSize(25, 25));
 
+    QStringList list = QStringList() << "All"
+                                     << "Current day"
+                                     << "Current week"
+                                     << "Current month"
+                                     << "Current year"
+                                     << "Previous day"
+                                     << "Previous week"
+                                     << "Previous month"
+                                     << "Previous year"
+                                     << "Non-standard period";
+    ui->cbbPeriod->addItems(list);
+    connect(ui->cbbPeriod, &QComboBox::currentIndexChanged, this, &ExpenseWidget::setting);
+    ui->dtTo->setDate(QDate::currentDate());
     setModel(m_expenseModel);
     Style::setTableViewStyle(ui->tabExpenses);
 }
@@ -61,3 +74,18 @@ void ExpenseWidget::remove()
     !m_expenseModel->removeRows(currentRow, 1) ?
         showMessage(MSG_CANNOT_DELETE_ROW) : showMessage(MSG_DELETE_ROW);
 }
+
+void ExpenseWidget::setting()
+{
+    if (ui->cbbPeriod->currentIndex() == 9)
+    {
+        ui->dtFrom->setEnabled(true);
+        ui->dtTo->setEnabled(true);
+    }
+    else
+    {
+        ui->dtFrom->setEnabled(false);
+        ui->dtTo->setEnabled(false);
+    }
+}
+

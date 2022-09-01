@@ -23,6 +23,7 @@ private slots:
     void add();
     void edit();
     void remove();
+    void setting();
 
 private:
     Ui::ExpenseWidget *ui;

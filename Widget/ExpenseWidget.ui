@@ -160,7 +160,7 @@
    <property name="checked">
     <bool>true</bool>
    </property>
-   <widget class="QComboBox" name="cbPeriod">
+   <widget class="QComboBox" name="cbbPeriod">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -168,6 +168,15 @@
       <width>230</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="editable">
+     <bool>false</bool>
+    </property>
+    <property name="currentIndex">
+     <number>-1</number>
+    </property>
+    <property name="maxVisibleItems">
+     <number>20</number>
     </property>
    </widget>
    <widget class="QLabel" name="lblPeriod">
@@ -210,6 +219,9 @@
     </property>
    </widget>
    <widget class="QDateEdit" name="dtFrom">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -220,6 +232,9 @@
     </property>
    </widget>
    <widget class="QDateEdit" name="dtTo">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>140</x>
