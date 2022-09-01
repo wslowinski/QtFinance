@@ -4,6 +4,8 @@
 #include "Class/Expense.h"
 
 #include <QDialog>
+#include <vector>
+#include <utility>
 
 namespace Ui {
 class ExpenseDialog;
@@ -23,7 +25,10 @@ private slots:
 
 private:
     Ui::ExpenseDialog *ui;
-    Expense& m_expense;
+    Expense& m_expense; 
+    std::vector<std::pair<QString, QString>> categoriesArray;
+
+    void init();
 };
 
 #endif

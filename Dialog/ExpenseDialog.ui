@@ -65,10 +65,16 @@
     <string notr="true"/>
    </property>
    <property name="editable">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="maxVisibleItems">
     <number>20</number>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
    </property>
    <property name="frame">
     <bool>true</bool>
@@ -258,7 +264,8 @@
     <string>...</string>
    </property>
    <property name="icon">
-    <iconset theme="emblem-downloads"/>
+    <iconset theme="emblem-downloads">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="iconSize">
     <size>
