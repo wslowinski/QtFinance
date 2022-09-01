@@ -2,30 +2,34 @@
 
 Expense::Expense():
     m_id(0),
-    m_date(QDate::currentDate()),
-    m_category(""),
     m_expense(0.0),
-    m_shopName("")
+    m_currencyCode("PLN"),
+    m_category(""),
+    m_title(""),
+    m_date(QDate::currentDate()),
+    m_exchangeRate(1.0),
+    m_comment("")
 {
 }
 
-Expense::Expense(const QDate& date, const QString& category, double expense,
-    const QString& shopName):
-    m_id(0),
-    m_date(date),
-    m_category(category),
-    m_expense(expense),
-    m_shopName(shopName)
-{
-}
-
-Expense::Expense(int id, const QDate& date, const QString& category, double expense,
-    const QString& shopName):
+Expense::Expense(int id, double expense, const QString& currencyCode,
+    const QString& category, const QString& title, const QDate& date,
+    double exchangeRate, const QString& comment):
     m_id(id),
-    m_date(date),
-    m_category(category),
     m_expense(expense),
-    m_shopName(shopName)
+    m_currencyCode(currencyCode),
+    m_category(category),
+    m_title(title),
+    m_date(date),
+    m_exchangeRate(exchangeRate),
+    m_comment(comment)
+{
+}
+
+Expense::Expense(double expense, const QString& currencyCode,
+    const QString& category, const QString& title, const QDate& date,
+    double exchangeRate, const QString& comment):
+    Expense(0, expense, currencyCode, category, title, date, exchangeRate, comment)
 {
 }
 
@@ -34,9 +38,14 @@ void Expense::setID(int id)
     m_id = id;
 }
 
-void Expense::setDate(const QDate& date)
+void Expense::setExpense(double expense)
 {
-    m_date = date;
+    m_expense = expense;
+}
+
+void Expense::setCurrencyCode(const QString& currencyCode)
+{
+    m_currencyCode = currencyCode;
 }
 
 void Expense::setCategory(const QString& category)
@@ -44,14 +53,24 @@ void Expense::setCategory(const QString& category)
     m_category = category;
 }
 
-void Expense::setExpense(double expense)
+void Expense::setTitle(const QString& title)
 {
-    m_expense = expense;
+    m_title = title;
 }
 
-void Expense::setShopName(const QString& shopName)
+void Expense::setDate(const QDate& date)
 {
-    m_shopName = shopName;
+    m_date = date;
+}
+
+void Expense::setExchangeRate(double exchangeRate)
+{
+    m_exchangeRate = exchangeRate;
+}
+
+void Expense::setComment(const QString& comment)
+{
+    m_comment = comment;
 }
 
 int Expense::getID() const
@@ -59,9 +78,14 @@ int Expense::getID() const
     return m_id;
 }
 
-QDate Expense::getDate() const
+double Expense::getExpense() const
 {
-    return m_date;
+    return m_expense;
+}
+
+QString Expense::getCurrencyCode() const
+{
+    return m_currencyCode;
 }
 
 QString Expense::getCategory() const
@@ -69,12 +93,22 @@ QString Expense::getCategory() const
     return m_category;
 }
 
-double Expense::getExpense() const
+QString Expense::getTitle() const
 {
-    return m_expense;
+    return m_title;
 }
 
-QString Expense::getShopName() const
+QDate Expense::getDate() const
 {
-    return m_shopName;
+    return m_date;
+}
+
+double Expense::getExchangeRate() const
+{
+    return m_exchangeRate;
+}
+
+QString Expense::getComment() const
+{
+    return m_comment;
 }

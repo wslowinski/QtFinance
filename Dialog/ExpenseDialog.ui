@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>395</width>
-    <height>239</height>
+    <height>394</height>
    </rect>
   </property>
   <property name="palette">
@@ -30,7 +30,7 @@
    <property name="geometry">
     <rect>
      <x>210</x>
-     <y>200</y>
+     <y>350</y>
      <width>165</width>
      <height>31</height>
     </rect>
@@ -123,7 +123,7 @@
     </size>
    </property>
   </widget>
-  <widget class="QLineEdit" name="edtShopName">
+  <widget class="QLineEdit" name="edtTitle">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -133,24 +133,24 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="lblShopName">
+  <widget class="QLabel" name="lblTitle">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>80</y>
-     <width>81</width>
+     <width>131</width>
      <height>17</height>
     </rect>
    </property>
    <property name="text">
-    <string>Shop name</string>
+    <string>Title / Shop Name</string>
    </property>
   </widget>
   <widget class="QDoubleSpinBox" name="dsbExpense">
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>140</y>
+     <y>310</y>
      <width>155</width>
      <height>25</height>
     </rect>
@@ -166,7 +166,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>140</y>
+     <y>310</y>
      <width>40</width>
      <height>25</height>
     </rect>
@@ -176,6 +176,108 @@
    </property>
    <property name="text">
     <string>Cost: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblComment">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>200</y>
+     <width>131</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Comment</string>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="edtComment">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>220</y>
+     <width>355</width>
+     <height>70</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cbbCurrencyCode">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>160</y>
+     <width>151</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="currentIndex">
+    <number>-1</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblCurrencyCode">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>140</y>
+     <width>131</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Currency Code</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblExchangeRate">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>140</y>
+     <width>131</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Exchange Rate</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="btnDownloadExchangeRate">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>160</y>
+     <width>25</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+   <property name="icon">
+    <iconset theme="emblem-downloads"/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>25</width>
+     <height>25</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="dsbExchangeRate">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>160</y>
+     <width>151</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
  </widget>

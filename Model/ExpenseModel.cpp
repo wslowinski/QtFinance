@@ -27,7 +27,7 @@ int ExpenseModel::rowCount(const QModelIndex& parent) const
 int ExpenseModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
-    return 5;
+    return 8;
 }
 
 QVariant ExpenseModel::data(const QModelIndex& index, int role) const
@@ -47,14 +47,20 @@ QVariant ExpenseModel::data(const QModelIndex& index, int role) const
             {
                 case ColumnName::ID:
                 return expense.getID();
-                case ColumnName::DATE:
-                return expense.getDate();
-                case ColumnName::CATEGORY:
-                return expense.getCategory();
                 case ColumnName::EXPENSE:
                 return expense.getExpense();
-                case ColumnName::SHOP_NAME:
-                return expense.getShopName();
+                case ColumnName::CURRENCY_CODE:
+                return expense.getCurrencyCode();
+                case ColumnName::CATEGORY:
+                return expense.getCategory();
+                case ColumnName::TITLE:
+                return expense.getTitle();
+                case ColumnName::DATE:
+                return expense.getDate();
+                case ColumnName::EXCHANGE_RATE:
+                return expense.getExchangeRate();
+                case ColumnName::COMMENT:
+                return expense.getComment();
             }
         }
     }
@@ -68,15 +74,21 @@ QVariant ExpenseModel::headerData(int section, Qt::Orientation orientation, int 
         switch(section)
         {
             case ColumnName::ID:
-            return QString("Expense ID");
-            case ColumnName::DATE:
-            return QString("Date");
+            return QString("ID");
+            case ColumnName::EXPENSE:
+            return QString("Expense [gross]");
+            case ColumnName::CURRENCY_CODE:
+            return QString("Currency Code");
             case ColumnName::CATEGORY:
             return QString("Category");
-            case ColumnName::EXPENSE:
-            return QString("Expense [zł]");
-            case ColumnName::SHOP_NAME:
-            return QString("Shop name / title");
+            case ColumnName::TITLE:
+            return QString("Title/Shop Name");
+            case ColumnName::DATE:
+            return QString("Date");
+            case ColumnName::EXCHANGE_RATE:
+            return QString("Exchange Rate");
+            case ColumnName::COMMENT:
+            return QString("Comment");
         }
     }
     return QVariant();
@@ -117,10 +129,13 @@ QHash<int, QByteArray> ExpenseModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[Roles::ID_ROLE] = "ID";
-    roles[Roles::DATE_ROLE] = "Date";
-    roles[Roles::CATEGORY_ROLE] = "Category";
     roles[Roles::EXPENSE_ROLE] = "Expense";
-    roles[Roles::SHOP_NAME_ROLE] = "Shop name";
+    roles[Roles::CURRENCY_CODE_ROLE] = "CurrencyCode";
+    roles[Roles::CATEGORY_ROLE] = "Category";
+    roles[Roles::TITLE_ROLE] = "Title";
+    roles[Roles::DATE_ROLE] = "Date";
+    roles[Roles::EXCHANGE_RATE_ROLE] = "ExchangeRole";
+    roles[Roles::COMMENT_ROLE] = "Comment";
     return roles;
 }
 

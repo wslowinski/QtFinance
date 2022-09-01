@@ -46,10 +46,13 @@ void DatabaseManager::updateDatabase()
         QSqlQuery query(m_database);
         query.exec("CREATE TABLE expenses (\
                         id INTEGER PRIMARY KEY AUTOINCREMENT, \
-                        date DATE, \
-                        category VARCHAR(50), \
                         expense FLOAT, \
-                        shopname VARCHAR(50))");
+                        currencyCode VARCHAR(5), \
+                        category VARCHAR(50), \
+                        title VARCHAR(50), \
+                        date DATE,\
+                        exchangeRate FLOAT, \
+                        comment VARCHAR(200))");
         DatabaseManager::debugQuery(query);
     }
     if(!m_database.tables().contains("incomes"))

@@ -7,29 +7,41 @@ class Expense
 {
 public:
     Expense();
-    Expense(const QDate& date, const QString& category, double expense,
-        const QString& shopName);
-    Expense(int id, const QDate& date, const QString& category, double expense,
-        const QString& shopName);
+    Expense(double expense, const QString& currencyCode,
+            const QString& category, const QString& title, const QDate& date,
+            double exchangeRate, const QString& comment);
+    Expense(int id, double expense, const QString& currencyCode,
+            const QString& category, const QString& title, const QDate& date,
+            double exchangeRate, const QString& comment);
     ~Expense() = default;
+
     void setID(int id);
-    void setDate(const QDate& date);
-    void setCategory(const QString& category);
     void setExpense(double expense);
-    void setShopName(const QString& shopName);
+    void setCurrencyCode(const QString& currencyCode);
+    void setCategory(const QString& category);
+    void setTitle(const QString& title);
+    void setDate(const QDate& date);
+    void setExchangeRate(double exchangeRate);
+    void setComment(const QString& comment);
 
     int getID() const;
-    QDate getDate() const;
-    QString getCategory() const;
     double getExpense() const;
-    QString getShopName() const;
+    QString getCurrencyCode() const;
+    QString getCategory() const;
+    QString getTitle() const;
+    QDate getDate() const;
+    double getExchangeRate() const;
+    QString getComment() const;
 
 private:
     int m_id;
-    QDate m_date;
-    QString m_category;
     double m_expense;
-    QString m_shopName;
+    QString m_currencyCode;
+    QString m_category;
+    QString m_title;
+    QDate m_date;
+    double m_exchangeRate;
+    QString m_comment;
 };
 
 #endif

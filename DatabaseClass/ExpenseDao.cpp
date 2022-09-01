@@ -9,12 +9,17 @@ ExpenseDao::ExpenseDao(QSqlDatabase& database):
 void ExpenseDao::add(Expense& expense) const
 {
     QSqlQuery query(m_database);
-    query.prepare("INSERT INTO expenses(date, category, expense, shopname) \
-        VALUES (:date, :category, :expense, :shopname)");
-    query.bindValue(":date", expense.getDate());
-    query.bindValue(":category", expense.getCategory());
+    query.prepare("INSERT INTO expenses(expense, currencyCode, category, \
+                    title, date, exchangeRate, comment) \
+                   VALUES (:expense, :currencyCode, :category, \
+                    :title, :date, :exchangeRate, :comment)");
     query.bindValue(":expense", expense.getExpense());
-    query.bindValue(":shopname", expense.getShopName());
+    query.bindValue(":currencyCode", expense.getCurrencyCode());
+    query.bindValue(":category", expense.getCategory());
+    query.bindValue(":title", expense.getTitle());
+    query.bindValue(":date", expense.getDate());
+    query.bindValue(":exchangeRate", expense.getExchangeRate());
+    query.bindValue(":comment", expense.getComment());
     query.exec();
     DatabaseManager::debugQuery(query);
     expense.setID(query.lastInsertId().toInt());
@@ -24,16 +29,21 @@ void ExpenseDao::update(Expense& expense) const
 {
     QSqlQuery query(m_database);
     query.prepare("UPDATE expenses SET \
-                     date = (:date), \
-                     category = (:category), \
                      expense = (:expense), \
-                     shopname = (:shopname) \
-                     WHERE od = (:id)");
-    query.bindValue(":id", expense.getID());
-    query.bindValue(":date", expense.getDate());
-    query.bindValue(":category", expense.getCategory());
+                     currencyCode = (:currencyCode), \
+                     category = (:category), \
+                     title = (:title) \
+                     date = (:date), \
+                     exchangeRate = (:exchangeRate), \
+                     comment = (:comment),\
+                     WHERE id = (:id)");
     query.bindValue(":expense", expense.getExpense());
-    query.bindValue(":shopname", expense.getShopName());
+    query.bindValue(":currencyCode", expense.getCurrencyCode());
+    query.bindValue(":category", expense.getCategory());
+    query.bindValue(":title", expense.getTitle());
+    query.bindValue(":date", expense.getDate());
+    query.bindValue(":exchangeRate", expense.getExchangeRate());
+    query.bindValue(":comment", expense.getComment());
     query.exec();
     DatabaseManager::debugQuery(query);
 }
@@ -49,8 +59,8 @@ void ExpenseDao::remove(int id) const
 
 std::vector<Expense> ExpenseDao::getAll() const
 {
-    QSqlQuery query("SELECT id, date, category, expense, shopname FROM expenses",
-                    m_database);
+    QSqlQuery query("SELECT id, expense, currencyCode, category, title, \
+                     date, exchangeRate, comment FROM expenses", m_database);
     query.exec();
     DatabaseManager::debugQuery(query);
 
@@ -58,12 +68,13 @@ std::vector<Expense> ExpenseDao::getAll() const
     while(query.next())
     {
         list.emplace_back(query.value("id").toInt(),
-                          query.value("date").toDate(),
-                          query.value("category").toString(),
                           query.value("expense").toDouble(),
-                          query.value("shopname").toString());
+                          query.value("currencyCode").toString(),
+                          query.value("category").toString(),
+                          query.value("title").toString(),
+                          query.value("date").toDate(),
+                          query.value("exchangeRate").toDouble(),
+                          query.value("comment").toString());
     }
     return list;
 }
-
-

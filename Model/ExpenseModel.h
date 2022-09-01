@@ -13,12 +13,13 @@ class ExpenseModel : public QAbstractTableModel
     Q_OBJECT
 public:
     enum Roles {
-        ID_ROLE = Qt::UserRole + 1, DATE_ROLE, CATEGORY_ROLE, EXPENSE_ROLE,
-        SHOP_NAME_ROLE
+        ID_ROLE = Qt::UserRole + 1, EXPENSE_ROLE, CURRENCY_CODE_ROLE,
+        CATEGORY_ROLE, TITLE_ROLE, DATE_ROLE, EXCHANGE_RATE_ROLE, COMMENT_ROLE
     };
 
     enum ColumnName {
-        ID = 0, DATE, CATEGORY, EXPENSE, SHOP_NAME
+        ID = 0, EXPENSE, CURRENCY_CODE, CATEGORY, TITLE, DATE, EXCHANGE_RATE,
+        COMMENT
     };
 
     explicit ExpenseModel(QObject* parent = nullptr);

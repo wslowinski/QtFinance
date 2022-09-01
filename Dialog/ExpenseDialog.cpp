@@ -11,8 +11,12 @@ ExpenseDialog::ExpenseDialog(Expense& expense, QWidget *parent) :
     connect(ui->btnBox, &QDialogButtonBox::accepted, this, &ExpenseDialog::accept);
     connect(ui->btnBox, &QDialogButtonBox::rejected, this, &ExpenseDialog::reject);
 
-    ui->dtDate->setDate(m_expense.getDate());
-    QStringList list = QStringList() << "Beauty"
+    ui->dsbExpense->setValue(m_expense.getExpense());
+    QStringList currencyCodesList = QStringList() << "PLN"
+                                                  << "EUR"
+                                                  << "USD";
+    ui->cbbCurrencyCode->addItems(currencyCodesList);
+    QStringList categoriesList = QStringList() << "Beauty"
                                      << "Bills"
                                      << "Drugstore"
                                      << "Fashion"
@@ -23,9 +27,11 @@ ExpenseDialog::ExpenseDialog(Expense& expense, QWidget *parent) :
                                      << "Restaurants"
                                      << "Transport"
                                      << "No Category";
-    ui->cbCategory->addItems(list);
-    ui->edtShopName->setText(m_expense.getShopName());
-    ui->dsbExpense->setValue(m_expense.getExpense());
+    ui->cbCategory->addItems(categoriesList);
+    ui->edtTitle->setText(m_expense.getTitle());
+    ui->dtDate->setDate(m_expense.getDate());
+    ui->dsbExchangeRate->setValue(m_expense.getExchangeRate());
+    ui->edtComment->setPlainText(m_expense.getComment());
 }
 
 ExpenseDialog::~ExpenseDialog()
@@ -35,8 +41,10 @@ ExpenseDialog::~ExpenseDialog()
 
 void ExpenseDialog::accept()
 {
-    m_expense = Expense(ui->dtDate->date(), ui->cbCategory->currentText(),
-                        ui->dsbExpense->value(), ui->edtShopName->text());
+    m_expense = Expense(ui->dsbExpense->value(), ui->cbbCurrencyCode->currentText(),
+                        ui->cbCategory->currentText(), ui->edtTitle->text(),
+                        ui->dtDate->date(), ui->dsbExchangeRate->value(),
+                        ui->edtComment->toPlainText());
     QDialog::accept();
 }
 
