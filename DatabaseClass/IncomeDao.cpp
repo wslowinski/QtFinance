@@ -9,11 +9,16 @@ IncomeDao::IncomeDao(QSqlDatabase& database):
 void IncomeDao::add(Income& income) const
 {
     QSqlQuery query(m_database);
-    query.prepare("INSERT INTO incomes(date, title, income) \
-        VALUES (:date, :title, :income)");
-    query.bindValue(":date", income.getDate());
+    query.prepare("INSERT INTO incomes(income, currencyCode, \
+                   title, date, exchangeRate, comment) \
+                   VALUES (:expense, :currencyCode, \
+                   :title, :date, :exchangeRate, :comment)");
+    query.bindValue(":expense", income.getIncome());
+    query.bindValue(":currencyCode", income.getCurrencyCode());
     query.bindValue(":title", income.getTitle());
-    query.bindValue(":income", income.getIncome());
+    query.bindValue(":date", income.getDate());
+    query.bindValue(":exchangeRate", income.getExchangeRate());
+    query.bindValue(":comment", income.getComment());
     query.exec();
     DatabaseManager::debugQuery(query);
     income.setID(query.lastInsertId().toInt());
@@ -23,14 +28,19 @@ void IncomeDao::update(Income& income) const
 {
     QSqlQuery query(m_database);
     query.prepare("UPDATE incomes SET \
+                     income = (:income), \
+                     currencyCode = (:currencyCode), \
+                     title = (:title) \
                      date = (:date), \
-                     title = (:title), \
-                     income = (:income) \
-                     WHERE od = (:id)");
-    query.bindValue(":id", income.getID());
-    query.bindValue(":date", income.getDate());
+                     exchangeRate = (:exchangeRate), \
+                     comment = (:comment),\
+                     WHERE id = (:id)");
+    query.bindValue(":expense", income.getIncome());
+    query.bindValue(":currencyCode", income.getCurrencyCode());
     query.bindValue(":title", income.getTitle());
-    query.bindValue(":income", income.getIncome());
+    query.bindValue(":date", income.getDate());
+    query.bindValue(":exchangeRate", income.getExchangeRate());
+    query.bindValue(":comment", income.getComment());
     query.exec();
     DatabaseManager::debugQuery(query);
 }
@@ -46,18 +56,21 @@ void IncomeDao::remove(int id) const
 
 std::vector<Income> IncomeDao::getAll() const
 {
-    QSqlQuery query("SELECT id, date, title, income FROM incomes",
-                    m_database);
+    QSqlQuery query("SELECT id, income, currencyCode, title, \
+                     date, exchangeRate, comment FROM incomes", m_database);
     query.exec();
     DatabaseManager::debugQuery(query);
 
-    std::vector<Income> list;
+    std::vector<Income> array;
     while(query.next())
     {
-        list.emplace_back(query.value("id").toInt(),
-                          query.value("date").toDate(),
+        array.emplace_back(query.value("id").toInt(),
+                          query.value("incomes").toDouble(),
+                          query.value("currencyCode").toString(),
                           query.value("title").toString(),
-                          query.value("income").toDouble());
+                          query.value("date").toDate(),
+                          query.value("exchangeRate").toDouble(),
+                          query.value("comment").toString());
     }
-    return list;
+    return array;
 }

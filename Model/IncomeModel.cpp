@@ -28,7 +28,7 @@ int IncomeModel::rowCount(const QModelIndex& parent) const
 int IncomeModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
-    return 4;
+    return 7;
 }
 
 QVariant IncomeModel::data(const QModelIndex& index, int role) const
@@ -38,19 +38,28 @@ QVariant IncomeModel::data(const QModelIndex& index, int role) const
         return QVariant();
     }
     const Income& income = m_incomes.at(index.row());
-    switch(role) {
+    switch(role)
+    {
         case Roles::ID_ROLE:
-            return QVariant::fromValue(income);
-        case Qt::DisplayRole: {
-            switch(index.column()) {
+        return QVariant::fromValue(income);
+        case Qt::DisplayRole:
+        {
+            switch(index.column())
+            {
                 case ColumnName::ID:
-                    return income.getID();
-                case ColumnName::DATE:
-                    return income.getDate();
-                case ColumnName::TITLE:
-                    return income.getTitle();
+                return income.getID();
                 case ColumnName::INCOME:
-                    return income.getIncome();
+                return income.getIncome();
+                case ColumnName::CURRENCY_CODE:
+                return income.getCurrencyCode();
+                case ColumnName::TITLE:
+                return income.getTitle();
+                case ColumnName::DATE:
+                return income.getDate();
+                case ColumnName::EXCHANGE_RATE:
+                return income.getExchangeRate();
+                case ColumnName::COMMENT:
+                return income.getComment();
             }
         }
     }
@@ -64,13 +73,19 @@ QVariant IncomeModel::headerData(int section, Qt::Orientation orientation, int r
         switch(section)
         {
             case ColumnName::ID:
-            return QString("Income ID");
-            case ColumnName::DATE:
-            return QString("Date");
+            return QString("ID");
+            case ColumnName::INCOME:
+            return QString("Income [gross]");
+            case ColumnName::CURRENCY_CODE:
+            return QString("Currency Code");
             case ColumnName::TITLE:
             return QString("Title");
-            case ColumnName::INCOME:
-            return QString("Income [zł]");
+            case ColumnName::DATE:
+            return QString("Date");
+            case ColumnName::EXCHANGE_RATE:
+            return QString("Exchange Rate");
+            case ColumnName::COMMENT:
+            return QString("Comment");
         }
     }
     return QVariant();
@@ -112,9 +127,12 @@ QHash<int, QByteArray> IncomeModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[Roles::ID_ROLE] = "ID";
-    roles[Roles::DATE_ROLE] = "Date";
-    roles[Roles::TITLE_ROLE] = "Title";
     roles[Roles::INCOME_ROLE] = "Income";
+    roles[Roles::CURRENCY_CODE_ROLE] = "CurrencyCode";
+    roles[Roles::TITLE_ROLE] = "Title";
+    roles[Roles::DATE_ROLE] = "Date";
+    roles[Roles::EXCHANGE_RATE_ROLE] = "ExchangeRole";
+    roles[Roles::COMMENT_ROLE] = "Comment";
     return roles;
 }
 

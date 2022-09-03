@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>395</width>
-    <height>394</height>
+    <height>447</height>
    </rect>
   </property>
   <property name="palette">
@@ -30,7 +30,7 @@
    <property name="geometry">
     <rect>
      <x>210</x>
-     <y>350</y>
+     <y>410</y>
      <width>165</width>
      <height>31</height>
     </rect>
@@ -46,7 +46,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>40</y>
+     <y>100</y>
      <width>101</width>
      <height>25</height>
     </rect>
@@ -56,7 +56,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>40</y>
+     <y>100</y>
      <width>191</width>
      <height>25</height>
     </rect>
@@ -84,7 +84,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>20</y>
+     <y>80</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -97,7 +97,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>20</y>
+     <y>80</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -110,7 +110,7 @@
    <property name="geometry">
     <rect>
      <x>350</x>
-     <y>40</y>
+     <y>100</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -133,7 +133,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>100</y>
+     <y>160</y>
      <width>355</width>
      <height>25</height>
     </rect>
@@ -143,7 +143,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>80</y>
+     <y>140</y>
      <width>131</width>
      <height>17</height>
     </rect>
@@ -156,7 +156,7 @@
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>310</y>
+     <y>370</y>
      <width>155</width>
      <height>25</height>
     </rect>
@@ -172,7 +172,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>310</y>
+     <y>370</y>
      <width>40</width>
      <height>25</height>
     </rect>
@@ -188,7 +188,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>200</y>
+     <y>260</y>
      <width>131</width>
      <height>17</height>
     </rect>
@@ -201,7 +201,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>220</y>
+     <y>280</y>
      <width>355</width>
      <height>70</height>
     </rect>
@@ -211,14 +211,14 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>160</y>
+     <y>220</y>
      <width>151</width>
      <height>25</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <bold>true</bold>
+     <bold>false</bold>
     </font>
    </property>
    <property name="currentIndex">
@@ -229,7 +229,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>140</y>
+     <y>200</y>
      <width>131</width>
      <height>17</height>
     </rect>
@@ -242,7 +242,7 @@
    <property name="geometry">
     <rect>
      <x>190</x>
-     <y>140</y>
+     <y>200</y>
      <width>131</width>
      <height>17</height>
     </rect>
@@ -255,7 +255,7 @@
    <property name="geometry">
     <rect>
      <x>350</x>
-     <y>160</y>
+     <y>220</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -278,13 +278,42 @@
    <property name="geometry">
     <rect>
      <x>190</x>
-     <y>160</y>
+     <y>220</y>
      <width>151</width>
      <height>26</height>
     </rect>
    </property>
    <property name="alignment">
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="imgExpense">
+   <property name="geometry">
+    <rect>
+     <x>165</x>
+     <y>0</y>
+     <width>70</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>355</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
    </property>
   </widget>
  </widget>

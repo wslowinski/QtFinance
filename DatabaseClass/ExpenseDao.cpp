@@ -10,9 +10,9 @@ void ExpenseDao::add(Expense& expense) const
 {
     QSqlQuery query(m_database);
     query.prepare("INSERT INTO expenses(expense, currencyCode, category, \
-                    title, date, exchangeRate, comment) \
+                   title, date, exchangeRate, comment) \
                    VALUES (:expense, :currencyCode, :category, \
-                    :title, :date, :exchangeRate, :comment)");
+                   :title, :date, :exchangeRate, :comment)");
     query.bindValue(":expense", expense.getExpense());
     query.bindValue(":currencyCode", expense.getCurrencyCode());
     query.bindValue(":category", expense.getCategory());
@@ -64,10 +64,10 @@ std::vector<Expense> ExpenseDao::getAll() const
     query.exec();
     DatabaseManager::debugQuery(query);
 
-    std::vector<Expense> list;
+    std::vector<Expense> array;
     while(query.next())
     {
-        list.emplace_back(query.value("id").toInt(),
+        array.emplace_back(query.value("id").toInt(),
                           query.value("expense").toDouble(),
                           query.value("currencyCode").toString(),
                           query.value("category").toString(),
@@ -76,5 +76,5 @@ std::vector<Expense> ExpenseDao::getAll() const
                           query.value("exchangeRate").toDouble(),
                           query.value("comment").toString());
     }
-    return list;
+    return array;
 }

@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent):
     m_incomeWidget(new IncomeWidget(this))
 {
     ui->setupUi(this);
-    QMainWindow::setWindowState(Qt::WindowMaximized);
+//    QMainWindow::setWindowState(Qt::WindowMaximized);
 
     connect(ui->tbtnExit, &QToolButton::clicked, this, &QMainWindow::close);
     ui->tabWidget->addTab(m_expenseWidget,

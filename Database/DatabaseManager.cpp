@@ -60,9 +60,12 @@ void DatabaseManager::updateDatabase()
         QSqlQuery query(m_database);
         query.exec("CREATE TABLE incomes (\
                         id INTEGER PRIMARY KEY AUTOINCREMENT, \
-                        date DATE, \
+                        income FLOAT, \
+                        currencyCode VARCHAR(5), \
                         title VARCHAR(50), \
-                        income FLOAT)");
+                        date DATE,\
+                        exchangeRate FLOAT, \
+                        comment VARCHAR(200))");
         DatabaseManager::debugQuery(query);
     }
 }

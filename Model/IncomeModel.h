@@ -13,12 +13,13 @@ class IncomeModel : public QAbstractTableModel
     Q_OBJECT
 public:
     enum Roles {
-        ID_ROLE = Qt::UserRole + 1, DATE_ROLE, TITLE_ROLE,
-        INCOME_ROLE
+        ID_ROLE = Qt::UserRole + 1, INCOME_ROLE, CURRENCY_CODE_ROLE,
+        TITLE_ROLE, DATE_ROLE, EXCHANGE_RATE_ROLE, COMMENT_ROLE
     };
 
     enum ColumnName {
-        ID = 0, DATE, TITLE, INCOME
+        ID = 0, INCOME, CURRENCY_CODE, TITLE, DATE, EXCHANGE_RATE,
+        COMMENT
     };
 
     explicit IncomeModel(QObject* parent = nullptr);

@@ -57,4 +57,6 @@ void ExpenseDialog::init()
     ui->dtDate->setDate(m_expense.getDate());
     ui->dsbExchangeRate->setValue(m_expense.getExchangeRate());
     ui->edtComment->setPlainText(m_expense.getComment());
+    const QPixmap& pmIncome(path + "expenses.png");
+    ui->imgExpense->setPixmap(pmIncome.scaled(70, 60, Qt::KeepAspectRatio));
 }

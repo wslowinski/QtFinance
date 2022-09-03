@@ -24,6 +24,8 @@ private slots:
 private:
     Ui::IncomeDialog *ui;
     Income& m_income;
+
+    void init();
 };
 
 #endif
