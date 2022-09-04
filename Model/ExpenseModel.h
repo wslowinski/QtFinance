@@ -22,7 +22,7 @@ public:
         COMMENT
     };
 
-    explicit ExpenseModel(QObject* parent = nullptr);
+    explicit ExpenseModel(QObject* parent = nullptr, const QString& sql = "");
     QModelIndex add(const Expense& expense);
     QModelIndex edit(const Expense& expense);
 

@@ -1,9 +1,9 @@
 #include "ExpenseModel.h"
 
-ExpenseModel::ExpenseModel(QObject* parent):
+ExpenseModel::ExpenseModel(QObject* parent, const QString& sql):
     QAbstractTableModel(parent),
     m_database(DatabaseManager::instance()),
-    m_expenses(m_database.m_expenseDao.getAll())
+    m_expenses(m_database.m_expenseDao.getAll(sql))
 {
 }
 

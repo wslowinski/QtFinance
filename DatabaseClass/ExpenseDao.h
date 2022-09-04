@@ -15,6 +15,7 @@ public:
     void update(Expense& expense) const;
     void remove(int id) const;
     std::vector<Expense> getAll() const;
+    std::vector<Expense> getAll(const QString& sql) const;
 
 private:
     QSqlDatabase& m_database;

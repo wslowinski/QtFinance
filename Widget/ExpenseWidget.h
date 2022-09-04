@@ -24,11 +24,13 @@ private slots:
     void edit();
     void remove();
     void setting();
+    void filter(int index);
 
 private:
     Ui::ExpenseWidget *ui;
-
     ExpenseModel* m_expenseModel;
+
+    QString getSQLFilter(int index);
 };
 
 #endif

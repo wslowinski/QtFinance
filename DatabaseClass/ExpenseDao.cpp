@@ -78,3 +78,24 @@ std::vector<Expense> ExpenseDao::getAll() const
     }
     return array;
 }
+
+std::vector<Expense> ExpenseDao::getAll(const QString& sql) const
+{
+    QSqlQuery query(sql, m_database);
+    query.exec();
+    DatabaseManager::debugQuery(query);
+
+    std::vector<Expense> array;
+    while(query.next())
+    {
+        array.emplace_back(query.value("id").toInt(),
+                          query.value("expense").toDouble(),
+                          query.value("currencyCode").toString(),
+                          query.value("category").toString(),
+                          query.value("title").toString(),
+                          query.value("date").toDate(),
+                          query.value("exchangeRate").toDouble(),
+                          query.value("comment").toString());
+    }
+    return array;
+}

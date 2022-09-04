@@ -10,7 +10,7 @@
 ExpenseWidget::ExpenseWidget(QWidget* parent):
     QWidget(parent),
     ui(new Ui::ExpenseWidget),
-    m_expenseModel(new ExpenseModel(this))
+    m_expenseModel(new ExpenseModel(this, getSQLFilter(0)))
 {
     ui->setupUi(this);
     connect(ui->btnAdd, &QPushButton::clicked, this, &ExpenseWidget::add);
@@ -39,10 +39,14 @@ ExpenseWidget::ExpenseWidget(QWidget* parent):
     ui->dtTo->setDate(QDate::currentDate());
     setModel(m_expenseModel);
     Style::setTableViewStyle(ui->tabExpenses);
+
+    connect(ui->cbbPeriod, SIGNAL(currentIndexChanged(int)),
+                this, SLOT(filter(int)));
 }
 
 ExpenseWidget::~ExpenseWidget()
 {
+    delete m_expenseModel;
     delete ui;
 }
 
@@ -86,6 +90,25 @@ void ExpenseWidget::setting()
     {
         ui->dtFrom->setEnabled(false);
         ui->dtTo->setEnabled(false);
+    }
+}
+
+void ExpenseWidget::filter(int index)
+{
+    m_expenseModel = new ExpenseModel(this, getSQLFilter(index));
+    setModel(m_expenseModel);
+}
+
+QString ExpenseWidget::getSQLFilter(int index)
+{
+    switch (index) {
+    case 0:
+        return QString{"SELECT * FROM expenses"};
+    case 1:
+        return QString{"SELECT * FROM expenses WHERE date = '"} +
+            QString{QDate::currentDate().toString("yyyy-MM-dd")} + QString{"'"};
+    default:
+        return QString{"SELECT * FROM expenses"};
     }
 }
 
