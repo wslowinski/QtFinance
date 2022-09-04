@@ -1,6 +1,8 @@
 #ifndef EXPENSEWIDGET_H
 #define EXPENSEWIDGET_H
 
+#include "Code/PeriodTypes.h"
+
 #include <QWidget>
 
 namespace Ui {
@@ -31,6 +33,7 @@ private:
     ExpenseModel* m_expenseModel;
 
     QString getSQLFilter(int index);
+    void init();
 };
 
 #endif

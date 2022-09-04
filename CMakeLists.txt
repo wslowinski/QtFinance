@@ -31,6 +31,10 @@ set(PROJECT_SOURCES
         Code/Messages.cpp
         Code/Style.h
         Code/Style.cpp
+        Code/SqlFilter.h
+        Code/SqlFilter.cpp
+        Code/PeriodTypes.h
+        Code/PeriodTypes.cpp
         # Database
         Database/DatabaseManager.h
         Database/DatabaseManager.cpp

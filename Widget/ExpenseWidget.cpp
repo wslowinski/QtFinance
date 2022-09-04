@@ -10,38 +10,10 @@
 ExpenseWidget::ExpenseWidget(QWidget* parent):
     QWidget(parent),
     ui(new Ui::ExpenseWidget),
-    m_expenseModel(new ExpenseModel(this, getSQLFilter(0)))
+    m_expenseModel(
+        new ExpenseModel(this, getSQLFilter(getPeriodType(PeriodType::ALL))))
 {
-    ui->setupUi(this);
-    connect(ui->btnAdd, &QPushButton::clicked, this, &ExpenseWidget::add);
-    ui->btnAdd->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/add.png"));
-    ui->btnAdd->setIconSize(QSize(25, 25));
-
-    connect(ui->btnDelete, &QPushButton::clicked, this, &ExpenseWidget::remove);
-    ui->btnDelete->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/delete.png"));
-    ui->btnDelete->setIconSize(QSize(25, 25));
-
-    ui->btnEdit->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/edit.png"));
-    ui->btnEdit->setIconSize(QSize(25, 25));
-
-    QStringList list = QStringList() << "All"
-                                     << "Current day"
-                                     << "Current week"
-                                     << "Current month"
-                                     << "Current year"
-                                     << "Previous day"
-                                     << "Previous week"
-                                     << "Previous month"
-                                     << "Previous year"
-                                     << "Non-standard period";
-    ui->cbbPeriod->addItems(list);
-    connect(ui->cbbPeriod, &QComboBox::currentIndexChanged, this, &ExpenseWidget::setting);
-    ui->dtTo->setDate(QDate::currentDate());
-    setModel(m_expenseModel);
-    Style::setTableViewStyle(ui->tabExpenses);
-
-    connect(ui->cbbPeriod, SIGNAL(currentIndexChanged(int)),
-                this, SLOT(filter(int)));
+    init();
 }
 
 ExpenseWidget::~ExpenseWidget()
@@ -79,23 +51,54 @@ void ExpenseWidget::remove()
         showMessage(MSG_CANNOT_DELETE_ROW) : showMessage(MSG_DELETE_ROW);
 }
 
+void ExpenseWidget::init()
+{
+    ui->setupUi(this);
+    connect(ui->btnAdd, &QPushButton::clicked, this, &ExpenseWidget::add);
+    ui->btnAdd->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/add.png"));
+    ui->btnAdd->setIconSize(QSize(25, 25));
+
+    connect(ui->btnDelete, &QPushButton::clicked, this, &ExpenseWidget::remove);
+    ui->btnDelete->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/delete.png"));
+    ui->btnDelete->setIconSize(QSize(25, 25));
+
+    ui->btnEdit->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/edit.png"));
+    ui->btnEdit->setIconSize(QSize(25, 25));
+
+    connect(ui->cbbPeriod, SIGNAL(currentIndexChanged(int)),
+                this, SLOT(filter(int)));
+
+    QStringList list = QStringList() << "All"
+                                     << "Current day"
+                                     << "Current week"
+                                     << "Current month"
+                                     << "Current year"
+                                     << "Previous day"
+                                     << "Previous week"
+                                     << "Previous month"
+                                     << "Previous year"
+                                     << "Non-standard period";
+    ui->cbbPeriod->addItems(list);
+    connect(ui->cbbPeriod, &QComboBox::currentIndexChanged, this, &ExpenseWidget::setting);
+    ui->dtTo->setDate(QDate::currentDate());
+
+    setModel(m_expenseModel);
+    Style::setTableViewStyle(ui->tabExpenses);
+}
+
+
 void ExpenseWidget::setting()
 {
-    if (ui->cbbPeriod->currentIndex() == 9)
-    {
-        ui->dtFrom->setEnabled(true);
-        ui->dtTo->setEnabled(true);
-    }
-    else
-    {
-        ui->dtFrom->setEnabled(false);
-        ui->dtTo->setEnabled(false);
-    }
+    bool enabledCondition =
+            ui->cbbPeriod->currentIndex() == getPeriodType(PeriodType::NON_STANDARD);
+    ui->dtFrom->setEnabled(enabledCondition);
+    ui->dtTo->setEnabled(enabledCondition);
 }
 
 void ExpenseWidget::filter(int index)
 {
-    m_expenseModel = new ExpenseModel(this, getSQLFilter(index));
+    m_expenseModel =
+            new ExpenseModel(this, getSQLFilter(index));
     setModel(m_expenseModel);
 }
 
