@@ -1,8 +1,6 @@
 #ifndef EXPENSEWIDGET_H
 #define EXPENSEWIDGET_H
 
-#include "Code/PeriodTypes.h"
-
 #include <QWidget>
 
 namespace Ui {

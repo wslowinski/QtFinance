@@ -4,6 +4,7 @@
 #include "Model/ExpenseModel.h"
 #include "Code/Messages.h"
 #include "Code/Style.h"
+#include "Code/PeriodTypes.h"
 
 #include <QMessageBox>
 
@@ -70,11 +71,8 @@ void ExpenseWidget::init()
 
     QStringList list = QStringList() << "All"
                                      << "Current day"
-                                     << "Current week"
                                      << "Current month"
                                      << "Current year"
-                                     << "Previous day"
-                                     << "Previous week"
                                      << "Previous month"
                                      << "Previous year"
                                      << "Non-standard period";
@@ -110,6 +108,22 @@ QString ExpenseWidget::getSQLFilter(int index)
     case 1:
         return QString{"SELECT * FROM expenses WHERE date = '"} +
             QString{QDate::currentDate().toString("yyyy-MM-dd")} + QString{"'"};
+    case 2:
+    {
+        int monthNumber = QDate::currentDate().month();
+        int daysInCurrentMonth = QDate::currentDate().daysInMonth();
+        int currentYear = QDate::currentDate().year();
+        return QString{"SELECT * FROM expenses WHERE date >= '"} +
+            QString{QDate(currentYear, monthNumber, 1).toString("yyyy-MM-dd")} + QString{"' AND date <= '"} +
+            QString{QDate(currentYear, monthNumber, daysInCurrentMonth).toString("yyyy-MM-dd") + "'"};
+    }
+    case 3:
+    {
+        int currentYear = QDate::currentDate().year();
+        return QString{"SELECT * FROM expenses WHERE date >= '"} +
+            QString{QDate(currentYear, 1, 1).toString("yyyy-MM-dd")} + QString{"' AND date <= '"} +
+            QString{QDate(currentYear, 12, 31).toString("yyyy-MM-dd") + "'"};
+    }
     default:
         return QString{"SELECT * FROM expenses"};
     }
