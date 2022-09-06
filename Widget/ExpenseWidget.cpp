@@ -5,6 +5,7 @@
 #include "Code/Messages.h"
 #include "Code/Style.h"
 #include "Code/PeriodTypes.h"
+#include "Code/SqlFilter.h"
 
 #include <QMessageBox>
 
@@ -12,7 +13,7 @@ ExpenseWidget::ExpenseWidget(QWidget* parent):
     QWidget(parent),
     ui(new Ui::ExpenseWidget),
     m_expenseModel(
-        new ExpenseModel(this, getSQLFilter(getPeriodType(PeriodType::ALL))))
+        new ExpenseModel(this, filterRecordsByPeriod("expenses", getPeriodType(PeriodType::ALL))))
 {
     init();
 }
@@ -95,37 +96,10 @@ void ExpenseWidget::setting()
 
 void ExpenseWidget::filter(int index)
 {
-    m_expenseModel =
-            new ExpenseModel(this, getSQLFilter(index));
+    m_expenseModel = (index != PeriodType::NON_STANDARD) ?
+                new ExpenseModel(this, filterRecordsByPeriod("expenses", index)):
+                new ExpenseModel(this, filterRecordsByPeriod("expenses", index,
+                    ui->dtFrom->date(), ui->dtTo->date()));
     setModel(m_expenseModel);
-}
-
-QString ExpenseWidget::getSQLFilter(int index)
-{
-    switch (index) {
-    case 0:
-        return QString{"SELECT * FROM expenses"};
-    case 1:
-        return QString{"SELECT * FROM expenses WHERE date = '"} +
-            QString{QDate::currentDate().toString("yyyy-MM-dd")} + QString{"'"};
-    case 2:
-    {
-        int monthNumber = QDate::currentDate().month();
-        int daysInCurrentMonth = QDate::currentDate().daysInMonth();
-        int currentYear = QDate::currentDate().year();
-        return QString{"SELECT * FROM expenses WHERE date >= '"} +
-            QString{QDate(currentYear, monthNumber, 1).toString("yyyy-MM-dd")} + QString{"' AND date <= '"} +
-            QString{QDate(currentYear, monthNumber, daysInCurrentMonth).toString("yyyy-MM-dd") + "'"};
-    }
-    case 3:
-    {
-        int currentYear = QDate::currentDate().year();
-        return QString{"SELECT * FROM expenses WHERE date >= '"} +
-            QString{QDate(currentYear, 1, 1).toString("yyyy-MM-dd")} + QString{"' AND date <= '"} +
-            QString{QDate(currentYear, 12, 31).toString("yyyy-MM-dd") + "'"};
-    }
-    default:
-        return QString{"SELECT * FROM expenses"};
-    }
 }
 

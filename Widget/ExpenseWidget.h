@@ -30,7 +30,6 @@ private:
     Ui::ExpenseWidget *ui;
     ExpenseModel* m_expenseModel;
 
-    QString getSQLFilter(int index);
     void init();
 };
 
