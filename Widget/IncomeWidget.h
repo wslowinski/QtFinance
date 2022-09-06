@@ -23,11 +23,14 @@ private slots:
     void add();
     void edit();
     void remove();
+    void setting();
+    void filter(int index);
 
 private:
     Ui::IncomeWidget *ui;
-
     IncomeModel* m_incomeModel;
+
+    void init();
 };
 
 #endif

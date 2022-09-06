@@ -1,9 +1,9 @@
 #include "IncomeModel.h"
 
-IncomeModel::IncomeModel(QObject* parent):
+IncomeModel::IncomeModel(QObject* parent, const QString& sql):
     QAbstractTableModel(parent),
     m_database(DatabaseManager::instance()),
-    m_incomes(m_database.m_incomeDao.getAll())
+    m_incomes(m_database.m_incomeDao.getAll(sql))
 {
 }
 

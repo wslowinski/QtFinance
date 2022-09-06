@@ -157,7 +157,7 @@
    <property name="checked">
     <bool>true</bool>
    </property>
-   <widget class="QComboBox" name="cbPeriod">
+   <widget class="QComboBox" name="cbbPeriod">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -207,6 +207,9 @@
     </property>
    </widget>
    <widget class="QDateEdit" name="dtFrom">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -217,6 +220,9 @@
     </property>
    </widget>
    <widget class="QDateEdit" name="dtTo">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>140</x>

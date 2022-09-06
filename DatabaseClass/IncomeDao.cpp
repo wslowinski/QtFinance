@@ -74,3 +74,23 @@ std::vector<Income> IncomeDao::getAll() const
     }
     return array;
 }
+
+std::vector<Income> IncomeDao::getAll(const QString& sql) const
+{
+    QSqlQuery query(sql, m_database);
+    query.exec();
+    DatabaseManager::debugQuery(query);
+
+    std::vector<Income> array;
+    while(query.next())
+    {
+        array.emplace_back(query.value("id").toInt(),
+                          query.value("incomes").toDouble(),
+                          query.value("currencyCode").toString(),
+                          query.value("title").toString(),
+                          query.value("date").toDate(),
+                          query.value("exchangeRate").toDouble(),
+                          query.value("comment").toString());
+    }
+    return array;
+}

@@ -22,7 +22,7 @@ public:
         COMMENT
     };
 
-    explicit IncomeModel(QObject* parent = nullptr);
+    explicit IncomeModel(QObject* parent = nullptr, const QString& sql = "");
     QModelIndex add(const Income& income);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
