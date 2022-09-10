@@ -1,8 +1,9 @@
 #include "MainWindow.h"
 #include "./ui_MainWindow.h"
-
 #include "Widget/ExpenseWidget.h"
 #include "Widget/IncomeWidget.h"
+
+#include <QScreen>
 
 MainWindow::MainWindow(QWidget *parent):
     QMainWindow(parent),
@@ -11,8 +12,7 @@ MainWindow::MainWindow(QWidget *parent):
     m_incomeWidget(new IncomeWidget(this))
 {
     ui->setupUi(this);
-//    QMainWindow::setWindowState(Qt::WindowMaximized);
-
+    QMainWindow::setWindowState(Qt::WindowMaximized);
     connect(ui->tbtnExit, &QToolButton::clicked, this, &QMainWindow::close);
     ui->tabWidget->addTab(m_expenseWidget,
                           QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/expenses.png"), "Expenses");
@@ -23,8 +23,10 @@ MainWindow::MainWindow(QWidget *parent):
 
 MainWindow::~MainWindow()
 {
-    close();
+    delete m_expenseWidget;
+    delete m_incomeWidget;
     delete ui;
+    close();
 }
 
 void MainWindow::close()

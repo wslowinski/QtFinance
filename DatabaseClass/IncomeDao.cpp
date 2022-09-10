@@ -54,27 +54,6 @@ void IncomeDao::remove(int id) const
     DatabaseManager::debugQuery(query);
 }
 
-std::vector<Income> IncomeDao::getAll() const
-{
-    QSqlQuery query("SELECT id, income, currencyCode, title, \
-                     date, exchangeRate, comment FROM incomes", m_database);
-    query.exec();
-    DatabaseManager::debugQuery(query);
-
-    std::vector<Income> array;
-    while(query.next())
-    {
-        array.emplace_back(query.value("id").toInt(),
-                          query.value("incomes").toDouble(),
-                          query.value("currencyCode").toString(),
-                          query.value("title").toString(),
-                          query.value("date").toDate(),
-                          query.value("exchangeRate").toDouble(),
-                          query.value("comment").toString());
-    }
-    return array;
-}
-
 std::vector<Income> IncomeDao::getAll(const QString& sql) const
 {
     QSqlQuery query(sql, m_database);
@@ -85,7 +64,7 @@ std::vector<Income> IncomeDao::getAll(const QString& sql) const
     while(query.next())
     {
         array.emplace_back(query.value("id").toInt(),
-                          query.value("incomes").toDouble(),
+                          query.value("income").toDouble(),
                           query.value("currencyCode").toString(),
                           query.value("title").toString(),
                           query.value("date").toDate(),
@@ -93,4 +72,11 @@ std::vector<Income> IncomeDao::getAll(const QString& sql) const
                           query.value("comment").toString());
     }
     return array;
+}
+
+std::vector<Income> IncomeDao::getAll() const
+{
+    const QString& sql = "SELECT id, income, currencyCode, title, \
+                     date, exchangeRate, comment FROM incomes";
+    return getAll(sql);
 }
