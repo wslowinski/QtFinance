@@ -76,19 +76,19 @@ QVariant ExpenseModel::headerData(int section, Qt::Orientation orientation, int 
             case ColumnName::ID:
             return QString("ID");
             case ColumnName::EXPENSE:
-            return QString("Expense [gross]");
+            return QString("EXPENSE [GROSS]");
             case ColumnName::CURRENCY_CODE:
-            return QString("Currency Code");
+            return QString("CURRENCY CODE");
             case ColumnName::CATEGORY:
-            return QString("Category");
+            return QString("CATEGORY");
             case ColumnName::TITLE:
-            return QString("Title/Shop Name");
+            return QString("TITLE/SHOP NAME");
             case ColumnName::DATE:
-            return QString("Date");
+            return QString("DATE");
             case ColumnName::EXCHANGE_RATE:
-            return QString("Exchange Rate");
+            return QString("EXCHANGE RATE");
             case ColumnName::COMMENT:
-            return QString("Comment");
+            return QString("COMMENT");
         }
     }
     return QVariant();

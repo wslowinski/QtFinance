@@ -2,6 +2,7 @@
 #define EXPENSEWIDGET_H
 
 #include <QWidget>
+#include <QLabel>
 
 #include <Database/DatabaseManager.h>
 
@@ -33,8 +34,12 @@ private:
     ExpenseModel* m_expenseModel;
     DatabaseManager& m_database;
     ExpenseAnalysis& m_expenseAnalysis;
+    std::vector<QString> categoriesName;
+    std::vector<QLabel*> categoriesLabels;
+    std::vector<QLabel*> categoriesPercentages;
 
     void init();
+    double calculateSum();
 };
 
 #endif

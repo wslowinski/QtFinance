@@ -51,6 +51,9 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="displayFormat">
+    <string>yyyy-MM-dd</string>
+   </property>
   </widget>
   <widget class="QComboBox" name="cbCategory">
    <property name="geometry">
@@ -163,6 +166,9 @@
    </property>
    <property name="alignment">
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+   <property name="showGroupSeparator" stdset="0">
+    <bool>false</bool>
    </property>
    <property name="maximum">
     <double>1000000000000000042420637374017961984.000000000000000</double>

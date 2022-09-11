@@ -41,6 +41,7 @@ void ExpenseWidget::add()
         QModelIndex createdIndex = m_expenseModel->add(expense);
         ui->tabExpenses->setCurrentIndex(createdIndex);
     }
+    ui->lblTotal->setText(QVariant(calculateSum()).toString() + " zł");
 }
 
 void ExpenseWidget::edit()
@@ -53,6 +54,7 @@ void ExpenseWidget::remove()
     unsigned int currentRow = ui->tabExpenses->currentIndex().row();
     !m_expenseModel->removeRows(currentRow, 1) ?
         showMessage(MSG_CANNOT_DELETE_ROW) : showMessage(MSG_DELETE_ROW);
+    ui->lblTotal->setText(QVariant(calculateSum()).toString() + " zł");
 }
 
 void ExpenseWidget::init()
@@ -86,18 +88,18 @@ void ExpenseWidget::init()
     setModel(m_expenseModel);
     Style::setTableViewStyle(ui->tabExpenses);
 
-    std::vector<QString> categoriesName = {"Beauty", "Bills", "Drugstore", "Fashion", "Free Time",
-                                      "Groceries", "Health", "Home appliances", "Restaurants",
-                                      "Transport", "No Category"};
-    std::vector<QLabel*> categoriesLabels = {ui->lblBeauty, ui->lblBills, ui->lblDrugstore,
-                                            ui->lblFashion, ui->lblFreeTime, ui->lblGroceries,
-                                            ui->lblHealth, ui->lblHomeAppliances, ui->lblRestaurants,
-                                            ui->lblTransport, ui->lblNoCategory};
-    for (unsigned int i = 0; i < categoriesName.size(); i++)
-    {
-        double sum = m_expenseAnalysis.getCategoryExpenseSum(categoriesName[i], PeriodType::CURRENT_MONTH);
-        categoriesLabels[i]->setText(QVariant(sum).toString() + " zł");
-    }
+    categoriesName = {"Beauty", "Bills", "Drugstore", "Fashion", "Free Time",
+                      "Groceries", "Health", "Home appliances", "Restaurants",
+                      "Transport", "No Category"};
+    categoriesLabels = {ui->lblBeauty, ui->lblBills, ui->lblDrugstore,
+                        ui->lblFashion, ui->lblFreeTime, ui->lblGroceries,
+                        ui->lblHealth, ui->lblHomeAppliances, ui->lblRestaurants,
+                        ui->lblTransport, ui->lblNoCategory};
+    categoriesPercentages = {ui->lblBeautyPercentage, ui->lblBillsPercentage, ui->lblDrugstorePercentage,
+                             ui->lblFashionPercentage, ui->lblFreeTimePercentage, ui->lblGroceriesPercentage,
+                             ui->lblHealthPercentage, ui->lblHomeAppliancesPercentage, ui->lblRestaurantsPercentage,
+                             ui->lblTransportPercentage, ui->lblNoCategoryPercentage};
+    ui->lblTotal->setText(QVariant(calculateSum()).toString() + " zł");
 }
 
 
@@ -116,5 +118,24 @@ void ExpenseWidget::filter(int index)
                 new ExpenseModel(this, filterRecordsByPeriod("expenses", index,
                     ui->dtFrom->date(), ui->dtTo->date()));
     setModel(m_expenseModel);
+}
+
+double ExpenseWidget::calculateSum()
+{
+    double expensesSum = 0.;
+    std::vector<double> expenses;
+    for (unsigned int i = 0; i < categoriesName.size(); i++)
+    {
+        double sum = m_expenseAnalysis.getCategoryExpenseSum(categoriesName.at(i), PeriodType::CURRENT_MONTH);
+        expenses.push_back(sum);
+        categoriesLabels.at(i)->setText(QVariant(sum).toString() + " zł");
+        expensesSum += sum;
+    }
+    for (unsigned int i = 0; i < expenses.size(); i++)
+    {
+        double percentage = expenses.at(i) / expensesSum * 100.;
+        categoriesPercentages.at(i)->setText(QString::number(percentage, 'g', 2) + " %");
+    }
+    return expensesSum;
 }
 
