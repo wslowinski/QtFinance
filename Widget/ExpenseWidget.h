@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include <Database/DatabaseManager.h>
+
 namespace Ui {
 class ExpenseWidget;
 }
@@ -29,6 +31,8 @@ private slots:
 private:
     Ui::ExpenseWidget *ui;
     ExpenseModel* m_expenseModel;
+    DatabaseManager& m_database;
+    ExpenseAnalysis& m_expenseAnalysis;
 
     void init();
 };

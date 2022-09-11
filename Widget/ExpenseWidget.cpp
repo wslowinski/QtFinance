@@ -13,7 +13,9 @@ ExpenseWidget::ExpenseWidget(QWidget* parent):
     QWidget(parent),
     ui(new Ui::ExpenseWidget),
     m_expenseModel(
-        new ExpenseModel(this, filterRecordsByPeriod("expenses", getPeriodType(PeriodType::ALL))))
+        new ExpenseModel(this, filterRecordsByPeriod("expenses", getPeriodType(PeriodType::ALL)))),
+    m_database(DatabaseManager::instance()),
+    m_expenseAnalysis(m_database.m_expenseAnalysis)
 {
     init();
 }
@@ -83,6 +85,19 @@ void ExpenseWidget::init()
 
     setModel(m_expenseModel);
     Style::setTableViewStyle(ui->tabExpenses);
+
+    std::vector<QString> categoriesName = {"Beauty", "Bills", "Drugstore", "Fashion", "Free Time",
+                                      "Groceries", "Health", "Home appliances", "Restaurants",
+                                      "Transport", "No Category"};
+    std::vector<QLabel*> categoriesLabels = {ui->lblBeauty, ui->lblBills, ui->lblDrugstore,
+                                            ui->lblFashion, ui->lblFreeTime, ui->lblGroceries,
+                                            ui->lblHealth, ui->lblHomeAppliances, ui->lblRestaurants,
+                                            ui->lblTransport, ui->lblNoCategory};
+    for (unsigned int i = 0; i < categoriesName.size(); i++)
+    {
+        double sum = m_expenseAnalysis.getCategoryExpenseSum(categoriesName[i], PeriodType::CURRENT_MONTH);
+        categoriesLabels[i]->setText(QVariant(sum).toString() + " zł");
+    }
 }
 
 

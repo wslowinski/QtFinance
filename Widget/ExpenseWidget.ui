@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1132</width>
-    <height>811</height>
+    <width>1440</width>
+    <height>820</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -108,8 +108,8 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>120</y>
-     <width>1111</width>
+     <y>180</y>
+     <width>1421</width>
      <height>531</height>
     </rect>
    </property>
@@ -133,8 +133,8 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>102</y>
-     <width>1111</width>
+     <y>160</y>
+     <width>1421</width>
      <height>16</height>
     </rect>
    </property>
@@ -145,8 +145,8 @@
   <widget class="QGroupBox" name="gbFilter">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>660</y>
+     <x>390</x>
+     <y>10</y>
      <width>451</width>
      <height>141</height>
     </rect>
@@ -242,6 +242,474 @@
       <width>110</width>
       <height>26</height>
      </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frmBeauty">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>720</y>
+     <width>120</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblBeautyName">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>51</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Beauty</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBeauty">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frmBills">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>720</y>
+     <width>120</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblBillsName">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>31</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bills</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBills">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frmDrugstore">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>720</y>
+     <width>120</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblDrugstoreName">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>71</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Drugstore</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblDrugstore">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frmFashion">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>720</y>
+     <width>120</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblFashionName">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>71</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string>Fashion</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblFashion">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frmFreeTime">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>720</y>
+     <width>120</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblFreeTimeName">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>71</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Free Time</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblFreeTime">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frmGroceries">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>720</y>
+     <width>120</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblGroceriesName">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>71</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Groceries</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblGroceries">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frmHealth">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>720</y>
+     <width>120</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblHealthName">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>71</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Health</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblHealth">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frmHomeAppliances">
+   <property name="geometry">
+    <rect>
+     <x>920</x>
+     <y>720</y>
+     <width>120</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblHomeAppliancesName">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Home Appliances</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblHomeAppliances">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frmRestaurants">
+   <property name="geometry">
+    <rect>
+     <x>1050</x>
+     <y>720</y>
+     <width>120</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblRestaurantsName">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>81</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Restaurants</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblRestaurants">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frmTransport">
+   <property name="geometry">
+    <rect>
+     <x>1180</x>
+     <y>720</y>
+     <width>120</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblTransportName">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>71</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Transport</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblTransport">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frmNoCategory">
+   <property name="geometry">
+    <rect>
+     <x>1310</x>
+     <y>720</y>
+     <width>120</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblNoCategoryName">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>71</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Drugstore</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblNoCategory">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
     </property>
    </widget>
   </widget>
