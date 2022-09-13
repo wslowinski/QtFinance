@@ -55,6 +55,9 @@ void ExpenseDao::remove(int id) const
     query.bindValue(":id", id);
     query.exec();
     DatabaseManager::debugQuery(query);
+    query.prepare("UPDATE SQLITE_SEQUENCE SET SEQ=1 WHERE NAME='expenses'");
+    query.exec();
+    DatabaseManager::debugQuery(query);
 }
 
 std::vector<Expense> ExpenseDao::getAll() const
