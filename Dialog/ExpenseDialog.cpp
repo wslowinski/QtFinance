@@ -1,5 +1,6 @@
 #include "ExpenseDialog.h"
 #include "ui_ExpenseDialog.h"
+#include "Widget/ExpenseWidget.h"
 
 ExpenseDialog::ExpenseDialog(Expense& expense, QWidget *parent) :
     QDialog(parent),
@@ -19,7 +20,10 @@ ExpenseDialog::~ExpenseDialog()
 
 void ExpenseDialog::accept()
 {
-    m_expense = Expense(ui->dsbExpense->value(), ui->cbbCurrencyCode->currentText(),
+    ExpenseWidget exp;
+    int previousID = exp.getCurrentID();
+    m_expense = Expense((previousID != 0) ? previousID + 1 : 1,
+                        ui->dsbExpense->value(), ui->cbbCurrencyCode->currentText(),
                         ui->cbCategory->currentText(), ui->edtTitle->text(),
                         ui->dtDate->date(), ui->dsbExchangeRate->value(),
                         ui->edtComment->toPlainText());

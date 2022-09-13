@@ -139,3 +139,9 @@ double ExpenseWidget::calculateSum()
     return expensesSum;
 }
 
+int ExpenseWidget::getCurrentID()
+{
+    int rowCount = ui->tabExpenses->model()->rowCount();
+    return ui->tabExpenses->model()->index(rowCount - 1, 0).data().toInt();
+}
+

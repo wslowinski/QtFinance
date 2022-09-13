@@ -21,6 +21,7 @@ public:
     ~ExpenseWidget();
 
     void setModel(ExpenseModel* model);
+    int getCurrentID();
 
 private slots:
     void add();

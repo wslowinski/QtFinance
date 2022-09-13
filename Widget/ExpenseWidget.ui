@@ -109,7 +109,7 @@
     <rect>
      <x>10</x>
      <y>180</y>
-     <width>1421</width>
+     <width>901</width>
      <height>531</height>
     </rect>
    </property>
@@ -1247,6 +1247,22 @@ color: rgb(224, 27, 36);</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QFrame" name="expenseChart">
+   <property name="geometry">
+    <rect>
+     <x>920</x>
+     <y>180</y>
+     <width>511</width>
+     <height>531</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
    </property>
   </widget>
  </widget>
