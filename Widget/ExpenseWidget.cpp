@@ -100,6 +100,8 @@ void ExpenseWidget::init()
                              ui->lblHealthPercentage, ui->lblHomeAppliancesPercentage, ui->lblRestaurantsPercentage,
                              ui->lblTransportPercentage, ui->lblNoCategoryPercentage};
     ui->lblTotal->setText(QVariant(calculateSum()).toString() + " zł");
+    ui->dtExchangeRateDate->setDate(QDate::currentDate());
+    ui->dtExchangeRateDate->setEnabled(ui->cbArchivedExchangeRates->isChecked());
 }
 
 

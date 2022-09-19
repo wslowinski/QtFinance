@@ -109,7 +109,7 @@
     <rect>
      <x>10</x>
      <y>180</y>
-     <width>901</width>
+     <width>1291</width>
      <height>531</height>
     </rect>
    </property>
@@ -1249,21 +1249,103 @@ color: rgb(224, 27, 36);</string>
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QFrame" name="expenseChart">
+  <widget class="QGroupBox" name="gbExchangeRates">
    <property name="geometry">
     <rect>
-     <x>920</x>
-     <y>180</y>
-     <width>511</width>
-     <height>531</height>
+     <x>860</x>
+     <y>10</y>
+     <width>281</width>
+     <height>141</height>
     </rect>
    </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+   <property name="title">
+    <string>Exchange Rates</string>
    </property>
-   <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
-   </property>
+   <widget class="QComboBox" name="cbbSymbol">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>110</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblSymbol">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Symbol</string>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="dspRate">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>50</y>
+      <width>110</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblRate">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>30</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Rate</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbArchivedExchangeRates">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>241</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Download archived rates</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnDownloadExchangeRates">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>110</y>
+      <width>110</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Download</string>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="dtExchangeRateDate">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>110</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
