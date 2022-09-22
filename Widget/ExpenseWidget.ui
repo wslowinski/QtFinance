@@ -236,6 +236,15 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
+    <property name="displayFormat">
+     <string>dd MMM yyyy</string>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QDateEdit" name="dtTo">
     <property name="enabled">
@@ -248,6 +257,15 @@
       <width>110</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
+    <property name="displayFormat">
+     <string>dd MMM yyyy </string>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>

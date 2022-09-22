@@ -109,11 +109,20 @@
       <height>26</height>
      </rect>
     </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="currentSection">
-     <enum>QDateTimeEdit::YearSection</enum>
+     <enum>QDateTimeEdit::DaySection</enum>
     </property>
     <property name="displayFormat">
-     <string>yyyy-MM-dd</string>
+     <string>dd MMMM yyyy</string>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
