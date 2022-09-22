@@ -170,6 +170,9 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="locale">
+    <locale language="English" country="UnitedStates"/>
+   </property>
    <property name="alignment">
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
@@ -295,8 +298,14 @@
      <height>26</height>
     </rect>
    </property>
+   <property name="locale">
+    <locale language="English" country="UnitedStates"/>
+   </property>
    <property name="alignment">
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+   <property name="showGroupSeparator" stdset="0">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="imgExpense">

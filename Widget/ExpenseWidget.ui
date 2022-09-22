@@ -116,6 +116,9 @@
    <property name="styleSheet">
     <string notr="true"/>
    </property>
+   <property name="locale">
+    <locale language="English" country="UnitedKingdom"/>
+   </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
    </property>
