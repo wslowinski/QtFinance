@@ -17,6 +17,9 @@ public:
 
 private:
     Ui::MainWidget *ui;
+
+private slots:
+    void setting();
 };
 
 #endif
