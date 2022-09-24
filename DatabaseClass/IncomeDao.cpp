@@ -35,7 +35,7 @@ void IncomeDao::update(Income& income) const
                      exchangeRate = (:exchangeRate), \
                      comment = (:comment),\
                      WHERE id = (:id)");
-    query.bindValue(":expense", income.getIncome());
+    query.bindValue(":income", income.getIncome());
     query.bindValue(":currencyCode", income.getCurrencyCode());
     query.bindValue(":title", income.getTitle());
     query.bindValue(":date", income.getDate());
@@ -50,6 +50,9 @@ void IncomeDao::remove(int id) const
     QSqlQuery query(m_database);
     query.prepare("DELETE FROM incomes WHERE id = (:id)");
     query.bindValue(":id", id);
+    query.exec();
+    DatabaseManager::debugQuery(query);
+    query.prepare("UPDATE SQLITE_SEQUENCE SET SEQ=1 WHERE NAME='incomes'");
     query.exec();
     DatabaseManager::debugQuery(query);
 }

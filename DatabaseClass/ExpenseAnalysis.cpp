@@ -21,7 +21,7 @@ double ExpenseAnalysis::getCategoryExpenseSum(const QString& category, int type,
     double sum = 0;
     while (query.next())
     {
-        sum += query.value("expense").toDouble();
+        sum = sum + query.value("expense").toDouble();
     }
     return sum;
 }

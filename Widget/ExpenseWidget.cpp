@@ -54,7 +54,7 @@ void ExpenseWidget::remove()
     unsigned int currentRow = ui->tabExpenses->currentIndex().row();
     !m_expenseModel->removeRows(currentRow, 1) ?
         showMessage(MSG_CANNOT_DELETE_ROW) : showMessage(MSG_DELETE_ROW);
-    ui->lblTotal->setText(QVariant(calculateSum()).toString() + " zł");
+    ui->lblTotal->setText(QString::number(calculateSum()) + " zł");
 }
 
 void ExpenseWidget::init()
