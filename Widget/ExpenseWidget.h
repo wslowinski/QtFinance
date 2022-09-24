@@ -41,7 +41,6 @@ private:
 
     void init();
     double calculateSum();
-    void plotChart();
 };
 
 #endif

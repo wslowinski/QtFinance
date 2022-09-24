@@ -1,5 +1,6 @@
 #include "IncomeDialog.h"
 #include "ui_IncomeDialog.h"
+#include "Widget/IncomeWidget.h"
 
 IncomeDialog::IncomeDialog(Income& income, QWidget *parent):
     QDialog(parent),
@@ -20,7 +21,10 @@ IncomeDialog::~IncomeDialog()
 
 void IncomeDialog::accept()
 {
-    m_income = Income(ui->dsbIncome->value(), ui->cbbCurrencyCode->currentText(),
+    IncomeWidget inc;
+    int previousID = inc.getCurrentID();
+    m_income = Income((previousID != 0) ? previousID + 1 : 1,
+                      ui->dsbIncome->value(), ui->cbbCurrencyCode->currentText(),
                       ui->edtTitle->text(), ui->dtDate->date(),
                       ui->dsbExchangeRate->value(),
                       ui->edtComment->toPlainText());

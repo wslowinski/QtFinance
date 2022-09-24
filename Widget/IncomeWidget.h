@@ -18,6 +18,7 @@ public:
     ~IncomeWidget();
 
     void setModel(IncomeModel* model);
+    int getCurrentID();
 
 private slots:
     void add();

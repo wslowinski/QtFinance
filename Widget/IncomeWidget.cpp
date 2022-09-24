@@ -99,3 +99,9 @@ void IncomeWidget::filter(int index)
                     ui->dtFrom->date(), ui->dtTo->date()));
     setModel(m_incomeModel);
 }
+
+int IncomeWidget::getCurrentID()
+{
+    int rowCount = ui->tabIncomes->model()->rowCount();
+    return ui->tabIncomes->model()->index(rowCount - 1, 0).data().toInt();
+}
