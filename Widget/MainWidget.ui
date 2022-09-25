@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1028</width>
-    <height>789</height>
+    <height>810</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <widget class="QGroupBox" name="gbExchangeRates">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>380</x>
      <y>20</y>
      <width>281</width>
      <height>201</height>
@@ -132,14 +132,29 @@
     </property>
    </widget>
   </widget>
-  <widget class="QTextEdit" name="edtText">
+  <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>40</y>
-     <width>461</width>
-     <height>741</height>
+     <x>10</x>
+     <y>20</y>
+     <width>341</width>
+     <height>781</height>
     </rect>
+   </property>
+   <property name="lineWidth">
+    <number>-10</number>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::NoSelection</enum>
+   </property>
+   <property name="selectionBehavior">
+    <enum>QAbstractItemView::SelectRows</enum>
+   </property>
+   <property name="showGrid">
+    <bool>false</bool>
+   </property>
+   <property name="gridStyle">
+    <enum>Qt::SolidLine</enum>
    </property>
   </widget>
  </widget>

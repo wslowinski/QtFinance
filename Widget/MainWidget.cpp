@@ -25,6 +25,22 @@ MainWidget::MainWidget(QWidget *parent) :
     ui->dspRate->setValue(1.0);
     connect(ui->cbbSymbol, SIGNAL(currentIndexChanged(int)),
                 this, SLOT(filter(int)));
+
+    QStringList titles;
+    ui->tableWidget->setColumnCount(3);
+    titles << "Code" << "Rate" << "Mid";
+    ui->tableWidget->setHorizontalHeaderLabels(titles);
+
+    for (unsigned int i = 0; i < m_rates.size(); i++)
+    {
+        ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+        ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 0,
+                                 new QTableWidgetItem(m_rates[i].first));
+        ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 1,
+                                 new QTableWidgetItem("1"));
+        ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 2,
+                                 new QTableWidgetItem(QString::number(m_rates[i].second)));
+    }
 }
 
 MainWidget::~MainWidget()
@@ -45,7 +61,7 @@ void MainWidget::download()
     m_rates = currencies.parseJSON();
     for (unsigned int i = 0; i < m_rates.size(); i++)
     {
-        ui->edtText->append(QString{m_rates.at(i).first + ": " + QString::number(m_rates.at(i).second)});
+//        ui->edtText->append(QString{m_rates.at(i).first + ": " + QString::number(m_rates.at(i).second)});
     }
 }
 
