@@ -20,6 +20,7 @@ private:
 
 private slots:
     void setting();
+    void download();
 };
 
 #endif
