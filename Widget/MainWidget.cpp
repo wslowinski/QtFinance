@@ -37,5 +37,9 @@ void MainWidget::setting()
 void MainWidget::download()
 {
     Currencies currencies(ui->dtExchangeRateDate->date());
-    ui->edtText->setText(currencies.downloadCurrencies());
+    Currencies::Rates rates = currencies.parseJSON();
+    for (unsigned int i = 0; i < rates.size(); i++)
+    {
+        ui->edtText->append(QString{rates.at(i).first + ":           " + QString::number(rates.at(i).second)});
+    }
 }

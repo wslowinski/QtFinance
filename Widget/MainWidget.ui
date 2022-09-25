@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1028</width>
-    <height>661</height>
+    <height>789</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -132,10 +132,10 @@
   <widget class="QTextEdit" name="edtText">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>230</y>
-     <width>1001</width>
-     <height>351</height>
+     <x>330</x>
+     <y>40</y>
+     <width>461</width>
+     <height>741</height>
     </rect>
    </property>
   </widget>
