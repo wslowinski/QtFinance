@@ -1,6 +1,5 @@
 #include "MainWidget.h"
 #include "ui_MainWidget.h"
-#include <Class/Currencies.h>
 
 #include <QUrl>
 #include <QtNetwork/QNetworkAccessManager>
@@ -12,14 +11,20 @@ MainWidget::MainWidget(QWidget *parent) :
     ui(new Ui::MainWidget)
 {
     ui->setupUi(this);
-    QStringList list = QStringList() << "PL" << "EUR" << "USD";
-    ui->cbbSymbol->addItems(list);
     ui->dtExchangeRateDate->setDate(QDate::currentDate());
     ui->dtExchangeRateDate->setEnabled(false);
     connect(ui->cbArchivedExchangeRates, &QCheckBox::clicked, this, &MainWidget::setting);
-
     connect(ui->btnDownloadExchangeRates, &QPushButton::clicked, this, &MainWidget::download);
-
+    Currencies currencies;
+    m_rates = currencies.parseJSON();
+    for (unsigned int i = 0; i < m_rates.size(); i++)
+    {
+        m_list << m_rates.at(i).first;
+    }
+    ui->cbbSymbol->addItems(m_list);
+    ui->dspRate->setValue(1.0);
+    connect(ui->cbbSymbol, SIGNAL(currentIndexChanged(int)),
+                this, SLOT(filter(int)));
 }
 
 MainWidget::~MainWidget()
@@ -36,10 +41,15 @@ void MainWidget::setting()
 
 void MainWidget::download()
 {
-    Currencies currencies(ui->dtExchangeRateDate->date());
-    Currencies::Rates rates = currencies.parseJSON();
-    for (unsigned int i = 0; i < rates.size(); i++)
+    Currencies currencies(ui->dtExchangeRateDate->date(), true);
+    m_rates = currencies.parseJSON();
+    for (unsigned int i = 0; i < m_rates.size(); i++)
     {
-        ui->edtText->append(QString{rates.at(i).first + ":           " + QString::number(rates.at(i).second)});
+        ui->edtText->append(QString{m_rates.at(i).first + ": " + QString::number(m_rates.at(i).second)});
     }
+}
+
+void MainWidget::filter(int index)
+{
+    ui->dspRate->setValue(m_rates.at(index).second);
 }

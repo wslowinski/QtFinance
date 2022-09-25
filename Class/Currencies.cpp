@@ -9,15 +9,17 @@
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
 
-Currencies::Currencies(const QDate& date):
-    m_date(date)
+Currencies::Currencies(const QDate& date, bool isArchival):
+    m_date(date),
+    m_isArchival(isArchival)
 {
 }
 
 QString Currencies::downloadCurrencies()
 {
-    QString urlAsString = QString{"http://api.nbp.pl/api/exchangerates/tables/A/"
-            + m_date.toString("yyyy-MM-dd") +"/?format=json"};
+    QString urlAsString = m_isArchival ? QString{"http://api.nbp.pl/api/exchangerates/tables/A/"
+            + m_date.toString("yyyy-MM-dd") +"/?format=json"} :
+            QString{"http://api.nbp.pl/api/exchangerates/tables/A/?format=json"};                             ;
     QNetworkAccessManager manager;
     QNetworkReply* response = manager.get(QNetworkRequest(QUrl(urlAsString)));
     QEventLoop event;
@@ -38,8 +40,14 @@ Currencies::Rates Currencies::parseJSON()
     foreach (const QJsonValue& value, jsonArray)
     {
         QJsonObject obj = value.toObject();
-        exchangeRates.push_back(std::make_pair(obj["code"].toString(),
+        if (obj["code"].toString() == "EUR" || obj["code"].toString() == "USD")
+        {
+            exchangeRates.insert(exchangeRates.begin(), std::make_pair(obj["code"].toString(),
+                                    obj["mid"].toDouble()));
+        }
+        else exchangeRates.push_back(std::make_pair(obj["code"].toString(),
                                 obj["mid"].toDouble()));
     }
+    exchangeRates.insert(exchangeRates.begin(), std::make_pair("PLN", 1.0));
     return exchangeRates;
 }

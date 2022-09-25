@@ -1,6 +1,8 @@
 #ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
+#include <Class/Currencies.h>
+
 #include <QWidget>
 
 namespace Ui {
@@ -18,9 +20,13 @@ public:
 private:
     Ui::MainWidget *ui;
 
+    QStringList m_list;
+    Currencies::Rates m_rates;
+
 private slots:
     void setting();
     void download();
+    void filter(int index);
 };
 
 #endif
