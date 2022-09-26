@@ -1,5 +1,6 @@
 #include "MainWidget.h"
 #include "ui_MainWidget.h"
+#include "Code/Style.h"
 
 #include <QUrl>
 #include <QtNetwork/QNetworkAccessManager>
@@ -30,7 +31,7 @@ MainWidget::MainWidget(QWidget *parent) :
     ui->tableWidget->setColumnCount(3);
     titles << "Code" << "Rate" << "Mid";
     ui->tableWidget->setHorizontalHeaderLabels(titles);
-
+    Style::setTableViewStyle(ui->tableWidget);
     for (unsigned int i = 0; i < m_rates.size(); i++)
     {
         ui->tableWidget->insertRow(ui->tableWidget->rowCount());
@@ -41,6 +42,7 @@ MainWidget::MainWidget(QWidget *parent) :
         ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 2,
                                  new QTableWidgetItem(QString::number(m_rates[i].second)));
     }
+
 }
 
 MainWidget::~MainWidget()
@@ -61,7 +63,9 @@ void MainWidget::download()
     m_rates = currencies.parseJSON();
     for (unsigned int i = 0; i < m_rates.size(); i++)
     {
-//        ui->edtText->append(QString{m_rates.at(i).first + ": " + QString::number(m_rates.at(i).second)});
+        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(m_rates[i].first));
+        ui->tableWidget->setItem(i, 1, new QTableWidgetItem("1"));
+        ui->tableWidget->setItem(i, 2, new QTableWidgetItem(QString::number(m_rates[i].second)));
     }
 }
 
