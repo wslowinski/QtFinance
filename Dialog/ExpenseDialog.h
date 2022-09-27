@@ -2,6 +2,7 @@
 #define EXPENSEDIALOG_H
 
 #include "Class/Expense.h"
+#include "Class/Currencies.h"
 
 #include <QDialog>
 #include <vector>
@@ -22,11 +23,16 @@ public:
 private slots:
     void accept();
     void reject();
+    void setting();
+    void download();
+    void filter(int index);
 
 private:
     Ui::ExpenseDialog *ui;
     Expense& m_expense; 
     std::vector<std::pair<QString, QString>> categoriesArray;
+    QStringList m_list;
+    Currencies::Rates m_rates;
 
     void init();
 };

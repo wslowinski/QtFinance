@@ -1,4 +1,5 @@
 #include "ExpenseDialog.h"
+#include "Class/Currencies.h"
 #include "ui_ExpenseDialog.h"
 #include "Widget/ExpenseWidget.h"
 
@@ -23,9 +24,9 @@ void ExpenseDialog::accept()
     ExpenseWidget exp;
     int previousID = exp.getCurrentID();
     m_expense = Expense((previousID != 0) ? previousID + 1 : 1,
-                        ui->dsbExpense->value(), ui->cbbCurrencyCode->currentText(),
+                        ui->dsbExpense->value(), ui->cbbSymbol->currentText(),
                         ui->cbCategory->currentText(), ui->edtTitle->text(),
-                        ui->dtDate->date(), ui->dsbExchangeRate->value(),
+                        ui->dtDate->date(), ui->dspRate->value(),
                         ui->edtComment->toPlainText());
     QDialog::accept();
 }
@@ -38,8 +39,6 @@ void ExpenseDialog::reject()
 void ExpenseDialog::init()
 {
     ui->dsbExpense->setValue(m_expense.getExpense());
-    QStringList currencyCodesList = QStringList() << "PLN" << "EUR" << "USD";
-    ui->cbbCurrencyCode->addItems(currencyCodesList);
     const QString& path = "/home/vladyslav/Desktop/QtFinance/QtFinance/Images/";
 
     categoriesArray.push_back(std::make_pair(path + "beauty.png", "Beauty"));
@@ -59,8 +58,41 @@ void ExpenseDialog::init()
     }
     ui->edtTitle->setText(m_expense.getTitle());
     ui->dtDate->setDate(m_expense.getDate());
-    ui->dsbExchangeRate->setValue(m_expense.getExchangeRate());
+
     ui->edtComment->setPlainText(m_expense.getComment());
     const QPixmap& pmIncome(path + "expenses.png");
     ui->imgExpense->setPixmap(pmIncome.scaled(70, 60, Qt::KeepAspectRatio));
+
+    ui->dtExchangeRateDate->setDate(QDate::currentDate());
+    ui->dtExchangeRateDate->setEnabled(false);
+    connect(ui->cbArchivedExchangeRates, &QCheckBox::clicked, this, &ExpenseDialog::setting);
+    connect(ui->btnDownloadExchangeRates, &QPushButton::clicked, this, &ExpenseDialog::download);
+    Currencies currencies;
+    m_rates = currencies.parseJSON();
+    for (unsigned int i = 0; i < m_rates.size(); i++)
+    {
+        m_list << m_rates.at(i).first;
+    }
+    ui->cbbSymbol->addItems(m_list);
+    ui->dspRate->setValue(m_expense.getExchangeRate());
+    connect(ui->cbbSymbol, SIGNAL(currentIndexChanged(int)),
+                this, SLOT(filter(int)));
+}
+
+void ExpenseDialog::setting()
+{
+    bool isChecked = ui->cbArchivedExchangeRates->isChecked();
+    ui->dtExchangeRateDate->setEnabled(isChecked);
+    if (!isChecked) ui->dtExchangeRateDate->setDate(QDate::currentDate());
+}
+
+void ExpenseDialog::download()
+{
+    Currencies currencies(ui->dtExchangeRateDate->date(), true);
+    m_rates = currencies.parseJSON();
+}
+
+void ExpenseDialog::filter(int index)
+{
+    ui->dspRate->setValue(m_rates.at(index).second);
 }
