@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QLabel>
 
-#include <Database/DatabaseManager.h>
+#include "Database/DatabaseManager.h"
 
 namespace Ui {
 class ExpenseWidget;

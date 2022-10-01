@@ -1,6 +1,8 @@
 #ifndef INCOMEWIDGET_H
 #define INCOMEWIDGET_H
 
+#include "Database/DatabaseManager.h"
+
 #include <QWidget>
 
 namespace Ui {
@@ -30,6 +32,8 @@ private slots:
 private:
     Ui::IncomeWidget *ui;
     IncomeModel* m_incomeModel;
+    DatabaseManager& m_database;
+    IncomeAnalysis& m_incomeAnalysis;
 
     void init();
 };

@@ -48,6 +48,8 @@ set(PROJECT_SOURCES
         DatabaseClass/IncomeDao.cpp
         DatabaseClass/ExpenseAnalysis.h
         DatabaseClass/ExpenseAnalysis.cpp
+        DatabaseClass/IncomeAnalysis.h
+        DatabaseClass/IncomeAnalysis.cpp
         # Dialog
         Dialog/ExpenseDialog.h
         Dialog/ExpenseDialog.cpp

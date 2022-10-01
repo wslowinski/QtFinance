@@ -4,6 +4,7 @@ DatabaseManager::DatabaseManager(const QString& path):
     m_expenseDao(m_database),
     m_incomeDao(m_database),
     m_expenseAnalysis(m_database),
+    m_incomeAnalysis(m_database),
     m_database(QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "SQLITE")))
 {
     m_database.setDatabaseName(path);

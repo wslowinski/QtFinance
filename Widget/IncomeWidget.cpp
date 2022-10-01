@@ -12,7 +12,9 @@
 IncomeWidget::IncomeWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::IncomeWidget),
-    m_incomeModel(new IncomeModel(this, filterRecordsByPeriod("incomes", getPeriodType(PeriodType::ALL))))
+    m_incomeModel(new IncomeModel(this, filterRecordsByPeriod("incomes", getPeriodType(PeriodType::ALL)))),
+    m_database(DatabaseManager::instance()),
+    m_incomeAnalysis(m_database.m_incomeAnalysis)
 {
     init();
 }
@@ -38,6 +40,7 @@ void IncomeWidget::add()
         QModelIndex createdIndex = m_incomeModel->add(income);
         ui->tabIncomes->setCurrentIndex(createdIndex);
     }
+    ui->lblTotal->setText(QVariant(m_incomeAnalysis.getIncomesSum(ui->cbbPeriod->currentIndex())).toString() + " zł");
 }
 
 void IncomeWidget::edit()
@@ -50,6 +53,7 @@ void IncomeWidget::remove()
     unsigned int currentRow = ui->tabIncomes->currentIndex().row();
     !m_incomeModel->removeRows(currentRow, 1) ?
         showMessage(MSG_CANNOT_DELETE_ROW) : showMessage(MSG_DELETE_ROW);
+    ui->lblTotal->setText(QVariant(m_incomeAnalysis.getIncomesSum(ui->cbbPeriod->currentIndex())).toString() + " zł");
 }
 
 void IncomeWidget::init()
@@ -81,6 +85,7 @@ void IncomeWidget::init()
 
     setModel(m_incomeModel);
     Style::setTableViewStyle(ui->tabIncomes);
+    ui->lblTotal->setText(QVariant(m_incomeAnalysis.getIncomesSum(ui->cbbPeriod->currentIndex())).toString() + " zł");
 }
 
 void IncomeWidget::setting()
@@ -97,6 +102,7 @@ void IncomeWidget::filter(int index)
                 new IncomeModel(this, filterRecordsByPeriod("incomes", index)):
                 new IncomeModel(this, filterRecordsByPeriod("incomes", index,
                     ui->dtFrom->date(), ui->dtTo->date()));
+    ui->lblTotal->setText(QVariant(m_incomeAnalysis.getIncomesSum(ui->cbbPeriod->currentIndex())).toString() + " zł");
     setModel(m_incomeModel);
 }
 

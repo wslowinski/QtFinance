@@ -10,6 +10,7 @@
 #include "DatabaseClass/ExpenseDao.h"
 #include "DatabaseClass/IncomeDao.h"
 #include "DatabaseClass/ExpenseAnalysis.h"
+#include "DatabaseClass/IncomeAnalysis.h"
 
 class DatabaseManager
 {
@@ -22,6 +23,7 @@ public:
     const ExpenseDao m_expenseDao;
     const IncomeDao m_incomeDao;
     ExpenseAnalysis m_expenseAnalysis;
+    IncomeAnalysis m_incomeAnalysis;
 
 private:
     void updateDatabase();
