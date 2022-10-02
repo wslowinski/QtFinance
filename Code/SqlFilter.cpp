@@ -7,7 +7,7 @@ QString filterRecordsByPeriod(const QString& table, int type, QDate dtFrom, QDat
     int currentYear = QDate::currentDate().year();
     if (PeriodType::ALL == type)
     {
-        return QString{"SELECT * FROM "} + table;
+        return QString{"SELECT * FROM " + table + " WHERE id IS NOT NULL"};
     }
     else if (PeriodType::CURRENT_DAY == type)
     {

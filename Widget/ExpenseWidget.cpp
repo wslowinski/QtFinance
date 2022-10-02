@@ -117,6 +117,7 @@ void ExpenseWidget::filter(int index)
                 new ExpenseModel(this, filterRecordsByPeriod("expenses", index)):
                 new ExpenseModel(this, filterRecordsByPeriod("expenses", index,
                     ui->dtFrom->date(), ui->dtTo->date()));
+    ui->lblTotal->setText(QVariant(calculateSum()).toString() + " zł");
     setModel(m_expenseModel);
 }
 
@@ -126,14 +127,14 @@ double ExpenseWidget::calculateSum()
     std::vector<double> expenses;
     for (unsigned int i = 0; i < categoriesName.size(); i++)
     {
-        double sum = m_expenseAnalysis.getCategoryExpenseSum(categoriesName.at(i), PeriodType::CURRENT_MONTH);
+        double sum = m_expenseAnalysis.getCategoryExpenseSum(categoriesName.at(i), ui->cbbPeriod->currentIndex());
         expenses.push_back(sum);
         categoriesLabels.at(i)->setText(QVariant(sum).toString() + " zł");
         expensesSum += sum;
     }
     for (unsigned int i = 0; i < expenses.size(); i++)
     {
-        double percentage = expenses.at(i) / expensesSum * 100.;
+        double percentage = (expensesSum != 0.) ? expenses.at(i) / expensesSum * 100. : 0.;
         categoriesPercentages.at(i)->setText(QString::number(percentage, 'g', 2) + " %");
     }
     return expensesSum;
