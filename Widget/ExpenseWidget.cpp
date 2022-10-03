@@ -99,7 +99,7 @@ void ExpenseWidget::init()
                              ui->lblFashionPercentage, ui->lblFreeTimePercentage, ui->lblGroceriesPercentage,
                              ui->lblHealthPercentage, ui->lblHomeAppliancesPercentage, ui->lblRestaurantsPercentage,
                              ui->lblTransportPercentage, ui->lblNoCategoryPercentage};
-    ui->lblTotal->setText(QVariant(calculateSum()).toString() + " zł");
+    ui->lblTotal->setText(QVariant(calculateSum()).toString() + " zł"); 
 }
 
 

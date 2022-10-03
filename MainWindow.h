@@ -10,6 +10,7 @@ QT_END_NAMESPACE
 class ExpenseWidget;
 class IncomeWidget;
 class MainWidget;
+class PieChartWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -28,5 +29,6 @@ private:
     ExpenseWidget* m_expenseWidget;
     IncomeWidget* m_incomeWidget;
     MainWidget* m_mainWidget;
+    PieChartWidget* m_pieChartWidget;
 };
 #endif

@@ -3,6 +3,7 @@
 #include "Widget/ExpenseWidget.h"
 #include "Widget/IncomeWidget.h"
 #include "Widget/MainWidget.h"
+#include "Widget/PieChartWidget.h"
 
 #include <QScreen>
 
@@ -11,7 +12,8 @@ MainWindow::MainWindow(QWidget *parent):
     ui(new Ui::MainWindow),
     m_expenseWidget(new ExpenseWidget(this)),
     m_incomeWidget(new IncomeWidget(this)),
-    m_mainWidget(new MainWidget(this))
+    m_mainWidget(new MainWidget(this)),
+    m_pieChartWidget(new PieChartWidget(this))
 {
     ui->setupUi(this);
     QMainWindow::setWindowState(Qt::WindowMaximized);
@@ -22,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent):
                           QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/expenses.png"), "Expenses");
     ui->tabWidget->addTab(m_incomeWidget,
                           QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/incomes.png"), "Incomes");
+    ui->tabWidget->addTab(m_pieChartWidget,
+                          QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/chart.png"), "Analysis");
     ui->tabWidget->setIconSize(QSize(40, 40));
 }
 
@@ -29,6 +33,8 @@ MainWindow::~MainWindow()
 {
     delete m_expenseWidget;
     delete m_incomeWidget;
+    delete m_mainWidget;
+    delete m_pieChartWidget;
     delete ui;
     close();
 }

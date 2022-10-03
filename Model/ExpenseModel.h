@@ -24,8 +24,6 @@ public:
 
     explicit ExpenseModel(QObject* parent = nullptr, const QString& sql = "");
     QModelIndex add(const Expense& expense);
-    QModelIndex edit(const Expense& expense);
-
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role) const override;

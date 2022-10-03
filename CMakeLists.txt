@@ -72,6 +72,9 @@ set(PROJECT_SOURCES
         Widget/MainWidget.h
         Widget/MainWidget.cpp
         Widget/MainWidget.ui
+        Widget/PieChartWidget.h
+        Widget/PieChartWidget.cpp
+        Widget/PieChartWidget.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
