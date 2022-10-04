@@ -12,7 +12,7 @@ class PieChartWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit PieChartWidget(QWidget *parent = nullptr);
+    explicit PieChartWidget(QWidget *parent = nullptr, std::vector<double> percentages = {});
     ~PieChartWidget();
 
 protected:
@@ -20,6 +20,8 @@ protected:
 
 private:
     Ui::PieChartWidget *ui;
+    std::vector<double> m_percentages;
+    double getPie(double percentage);
 };
 
 #endif
