@@ -35,12 +35,15 @@ private:
     ExpenseModel* m_expenseModel;
     DatabaseManager& m_database;
     ExpenseAnalysis& m_expenseAnalysis;
-    std::vector<QString> categoriesName;
-    std::vector<QLabel*> categoriesLabels;
-    std::vector<QLabel*> categoriesPercentages;
+    std::vector<QString> m_categoriesName;
+    std::vector<QLabel*> m_categoriesLabels;
+    std::vector<QLabel*> m_categoriesPercentages;
+    std::vector<double> m_percentages;
 
     void init();
     double calculateSum();
+    void paintEvent(QPaintEvent *event);
+    double getPie(double percentage);
 };
 
 #endif
