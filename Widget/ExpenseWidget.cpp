@@ -152,14 +152,13 @@ int ExpenseWidget::getCurrentID()
 
 void ExpenseWidget::paintEvent(QPaintEvent *event)
 {
+    Q_UNUSED(event);
     QPainter painter(this);
     painter.setPen(Qt::black);
-    painter.setFont(QFont("Ubuntu", 9));
+    painter.setFont(QFont("Ubuntu", 11));
     QRectF size = QRectF(1070, 250, 300, 300);
-
     std::vector<Qt::GlobalColor> colors = {Qt::black, Qt::blue, Qt::cyan, Qt::green, Qt::magenta, Qt::red,
                                           Qt::yellow, Qt::white, Qt::darkYellow, Qt::lightGray, Qt::darkCyan};
-
     const int rate = 27; int y = 260; double sum = 0;
     for (unsigned int i = 0; i < m_percentages.size(); ++i)
     {
@@ -171,6 +170,8 @@ void ExpenseWidget::paintEvent(QPaintEvent *event)
         painter.drawText(1600, y, QString::number(m_percentages.at(i), 'g', 2) + " %");
         y += rate;
     }
+    painter.setBrush(Qt::white);
+    painter.drawEllipse(1140, 320, 160, 160);
 }
 
 double ExpenseWidget::getPie(double percentage)
