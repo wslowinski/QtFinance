@@ -39,6 +39,7 @@ private:
     std::vector<QLabel*> m_categoriesLabels;
     std::vector<QLabel*> m_categoriesPercentages;
     std::vector<double> m_percentages;
+    double m_expensesSum;
 
     void init();
     double calculateSum();

@@ -131,16 +131,17 @@ double ExpenseWidget::calculateSum()
     {
         double sum = m_expenseAnalysis.getCategoryExpenseSum(m_categoriesName.at(i), ui->cbbPeriod->currentIndex());
         expenses.push_back(sum);
-        m_categoriesLabels.at(i)->setText(QVariant(sum).toString() + " zł");
+        m_categoriesLabels.at(i)->setText(QString::number(sum, 'f', 2) + " zł");
         expensesSum += sum;
     }
     for (unsigned int i = 0; i < expenses.size(); i++)
     {
         double percentage = (expensesSum != 0.) ? expenses.at(i) / expensesSum * 100. : 0.;
         m_percentages.push_back(percentage);
-        m_categoriesPercentages.at(i)->setText(QString::number(percentage, 'g', 2) + " %");
+        m_categoriesPercentages.at(i)->setText(QString::number(percentage, 'f', 2) + " %");
     }
     this->update();
+    m_expensesSum = expensesSum;
     return expensesSum;
 }
 
@@ -153,6 +154,7 @@ int ExpenseWidget::getCurrentID()
 void ExpenseWidget::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
+    if (m_expensesSum == 0.) return;
     QPainter painter(this);
     painter.setPen(Qt::black);
     painter.setFont(QFont("Ubuntu", 11));
@@ -165,13 +167,15 @@ void ExpenseWidget::paintEvent(QPaintEvent *event)
         painter.setBrush(colors.at(i));
         painter.drawPie(size, sum, getPie(m_percentages.at(i)));
         sum += getPie(m_percentages.at(i));
-        painter.drawEllipse(1390, y - 10, 10, 10);
-        painter.drawText(1430, y, m_categoriesName.at(i));
-        painter.drawText(1600, y, QString::number(m_percentages.at(i), 'g', 2) + " %");
+        painter.drawEllipse(1390+20, y - 10, 10, 10);
+        painter.drawText(1430+20, y, m_categoriesName.at(i));
+        painter.drawText(1600+20, y, QString::number(m_percentages.at(i), 'g', 2) + " %");
         y += rate;
     }
     painter.setBrush(Qt::white);
     painter.drawEllipse(1140, 320, 160, 160);
+    painter.setFont(QFont("Ubuntu", 22, QFont::Bold));
+    painter.drawText(1180, 410, "100 %");
 }
 
 double ExpenseWidget::getPie(double percentage)
