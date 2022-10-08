@@ -23,6 +23,10 @@ public:
 private slots:
     void close();
 
+    void on_btnExpenses_clicked();
+
+    void on_btnIncomes_clicked();
+
 private:
     Ui::MainWindow *ui;
 
