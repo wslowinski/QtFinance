@@ -22,10 +22,6 @@ MainWindow::MainWindow(QWidget *parent):
     ui->btnDB->setIconSize(QSize(70, 70));
     ui->btnExit->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/shutdown.png"));
     ui->btnExit->setIconSize(QSize(70, 70));
-    ui->btnExpenses->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/expenses.png"));
-    ui->btnExpenses->setIconSize(QSize(70, 70));
-    ui->btnIncomes->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/incomes.png"));
-    ui->btnIncomes->setIconSize(QSize(70, 70));
     ui->tabWidget->addTab(m_mainWidget,
                           QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/main.png"), "Main");
     ui->tabWidget->addTab(m_expenseWidget,
@@ -51,15 +47,3 @@ void MainWindow::close()
 {
     QMainWindow::close();
 }
-
-void MainWindow::on_btnExpenses_clicked()
-{
-    ui->tabWidget->setCurrentIndex(1);
-}
-
-
-void MainWindow::on_btnIncomes_clicked()
-{
-    ui->tabWidget->setCurrentIndex(2);
-}
-
