@@ -57,6 +57,9 @@ set(PROJECT_SOURCES
         Dialog/IncomeDialog.h
         Dialog/IncomeDialog.cpp
         Dialog/IncomeDialog.ui
+        Dialog/DatabaseDialog.h
+        Dialog/DatabaseDialog.cpp
+        Dialog/DatabaseDialog.ui
         # Model
         Model/ExpenseModel.h
         Model/ExpenseModel.cpp

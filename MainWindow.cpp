@@ -4,6 +4,7 @@
 #include "Widget/IncomeWidget.h"
 #include "Widget/MainWidget.h"
 #include "Widget/PieChartWidget.h"
+#include "Dialog/DatabaseDialog.h"
 
 #include <QScreen>
 
@@ -47,3 +48,10 @@ void MainWindow::close()
 {
     QMainWindow::close();
 }
+
+void MainWindow::on_btnDB_clicked()
+{
+    DatabaseDialog dbDialog("/home/vladyslav/Database/budget.db");
+    dbDialog.exec();
+}
+
