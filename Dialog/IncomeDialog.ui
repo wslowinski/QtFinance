@@ -35,9 +35,9 @@
   <widget class="QDateEdit" name="dtDate">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>100</y>
-     <width>201</width>
+     <x>320</x>
+     <y>170</y>
+     <width>181</width>
      <height>26</height>
     </rect>
    </property>
@@ -57,9 +57,9 @@
   <widget class="QLineEdit" name="edtTitle">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>20</x>
      <y>100</y>
-     <width>261</width>
+     <width>481</width>
      <height>26</height>
     </rect>
    </property>
@@ -86,8 +86,8 @@
   <widget class="QLabel" name="lblDate">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>80</y>
+     <x>320</x>
+     <y>150</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -99,7 +99,7 @@
   <widget class="QLabel" name="lblTitle">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>20</x>
      <y>80</y>
      <width>67</width>
      <height>17</height>
@@ -150,7 +150,7 @@
     <rect>
      <x>20</x>
      <y>60</y>
-     <width>471</width>
+     <width>481</width>
      <height>16</height>
     </rect>
    </property>
