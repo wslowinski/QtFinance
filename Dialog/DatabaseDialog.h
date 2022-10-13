@@ -18,6 +18,7 @@ public:
 private slots:
     void accept();
     void reject();
+    void open();
 
 private:
     Ui::DatabaseDialog *ui;
