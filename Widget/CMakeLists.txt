@@ -1,0 +1,16 @@
+set(PROJECT_SOURCES
+    ${PROJECT_SOURCES}
+    ${CMAKE_CURRENT_SOURCE_DIR}/ExpenseWidget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/ExpenseWidget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ExpenseWidget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/MainWidget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/MainWidget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/MainWidget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/IncomeWidget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/IncomeWidget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/IncomeWidget.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/PieChartWidget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/PieChartWidget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/PieChartWidget.ui
+    PARENT_SCOPE
+)
