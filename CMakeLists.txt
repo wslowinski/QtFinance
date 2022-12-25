@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.20)
 
 project(QtFinance VERSION 0.1 LANGUAGES CXX)
 
@@ -22,63 +22,10 @@ set(PROJECT_SOURCES
         MainWindow.cpp
         MainWindow.h
         MainWindow.ui
-        # Class
-        Class/Expense.h
-        Class/Expense.cpp
-        Class/Income.h
-        Class/Income.cpp
-        Class/Currencies.h
-        Class/Currencies.cpp
-        # Code
-        Code/Messages.h
-        Code/Messages.cpp
-        Code/Style.h
-        Code/Style.cpp
-        Code/SqlFilter.h
-        Code/SqlFilter.cpp
-        Code/PeriodTypes.h
-        Code/PeriodTypes.cpp
-        # Database
-        Database/DatabaseManager.h
-        Database/DatabaseManager.cpp
-        # DatabaseClass
-        DatabaseClass/ExpenseDao.h
-        DatabaseClass/ExpenseDao.cpp
-        DatabaseClass/IncomeDao.h
-        DatabaseClass/IncomeDao.cpp
-        DatabaseClass/ExpenseAnalysis.h
-        DatabaseClass/ExpenseAnalysis.cpp
-        DatabaseClass/IncomeAnalysis.h
-        DatabaseClass/IncomeAnalysis.cpp
-        # Dialog
-        Dialog/ExpenseDialog.h
-        Dialog/ExpenseDialog.cpp
-        Dialog/ExpenseDialog.ui
-        Dialog/IncomeDialog.h
-        Dialog/IncomeDialog.cpp
-        Dialog/IncomeDialog.ui
-        Dialog/DatabaseDialog.h
-        Dialog/DatabaseDialog.cpp
-        Dialog/DatabaseDialog.ui
-        # Model
-        Model/ExpenseModel.h
-        Model/ExpenseModel.cpp
-        Model/IncomeModel.h
-        Model/IncomeModel.cpp
-        # Widget
-        Widget/ExpenseWidget.h
-        Widget/ExpenseWidget.cpp
-        Widget/ExpenseWidget.ui
-        Widget/IncomeWidget.h
-        Widget/IncomeWidget.cpp
-        Widget/IncomeWidget.ui
-        Widget/MainWidget.h
-        Widget/MainWidget.cpp
-        Widget/MainWidget.ui
-        Widget/PieChartWidget.h
-        Widget/PieChartWidget.cpp
-        Widget/PieChartWidget.ui
 )
+
+add_subdirectory(Widget)
+add_subdirectory(Dialog)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(QtFinance
@@ -97,6 +44,13 @@ else()
         )
     endif()
 endif()
+
+add_subdirectory(Class)
+add_subdirectory(Code)
+add_subdirectory(Database)
+add_subdirectory(DatabaseClass)
+add_subdirectory(Model)
+
 
 target_link_libraries(QtFinance PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(QtFinance PRIVATE Qt${QT_VERSION_MAJOR}::Sql)
