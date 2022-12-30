@@ -1,12 +1,14 @@
 #ifndef EXPENSEMODEL_H
 #define EXPENSEMODEL_H
 
-#include "Class/Expense.h"
-#include "Database/DatabaseManager.h"
-
 #include <vector>
+
 #include <QAbstractTableModel>
 #include <QHash>
+
+#include "Class/Expense.h"
+
+class DatabaseManager;
 
 class ExpenseModel : public QAbstractTableModel
 {
@@ -35,8 +37,8 @@ public:
 private:
     bool isValidIndex(const QModelIndex& index) const;
 
-    DatabaseManager& m_database;
-    std::vector<Expense> m_expenses;
+    DatabaseManager& database_;
+    std::vector<Expense> expenses_;
 };
 
 #endif

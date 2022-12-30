@@ -1,9 +1,11 @@
 #include "ExpenseModel.h"
 
+#include "Database/DatabaseManager.h"
+
 ExpenseModel::ExpenseModel(QObject* parent, const QString& sql):
     QAbstractTableModel(parent),
-    m_database(DatabaseManager::instance()),
-    m_expenses(m_database.m_expenseDao.getAll(sql))
+    database_(DatabaseManager::getInstance()),
+    expenses_(database_.expenseDao_.getAll(sql))
 {
 }
 
@@ -12,8 +14,8 @@ QModelIndex ExpenseModel::add(const Expense& expense)
     int rowIndex = rowCount();
     beginInsertRows(QModelIndex(), rowIndex, rowIndex);
     Expense newExpense{expense};
-    m_database.m_expenseDao.add(newExpense);
-    m_expenses.push_back(expense);
+    database_.expenseDao_.add(newExpense);
+    expenses_.push_back(expense);
     endInsertRows();
     return index(rowIndex, 0);
 }
@@ -21,7 +23,7 @@ QModelIndex ExpenseModel::add(const Expense& expense)
 int ExpenseModel::rowCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
-    return m_expenses.size();
+    return expenses_.size();
 }
 
 int ExpenseModel::columnCount(const QModelIndex& parent) const
@@ -36,7 +38,7 @@ QVariant ExpenseModel::data(const QModelIndex& index, int role) const
     {
         return QVariant();
     }
-    const Expense& expense = m_expenses.at(index.row());
+    const Expense& expense = expenses_.at(index.row());
     switch(role)
     {
         case Roles::ID_ROLE:
@@ -52,7 +54,7 @@ QVariant ExpenseModel::data(const QModelIndex& index, int role) const
                 case ColumnName::CURRENCY_CODE:
                 return expense.getCurrencyCode();
                 case ColumnName::CATEGORY:
-                return expense.getCategory();
+                return expense.getCategory().getName();
                 case ColumnName::TITLE:
                 return expense.getTitle();
                 case ColumnName::DATE:
@@ -101,7 +103,7 @@ bool ExpenseModel::setData(const QModelIndex& index, const QVariant& value, int 
         return false;
     }
     auto expense = qvariant_cast<Expense>(value);
-    m_expenses.at(index.row()) = expense;
+    expenses_.at(index.row()) = expense;
     emit dataChanged(index, index);
     return true;
 }
@@ -117,10 +119,10 @@ bool ExpenseModel::removeRows(int row, int count, const QModelIndex& parent)
     int leftCount = count;
     while(leftCount--)
     {
-        const Expense& expense = m_expenses.at(row + leftCount);
-        m_database.m_expenseDao.remove(expense.getID());
+        const Expense& expense = expenses_.at(row + leftCount);
+        database_.expenseDao_.remove(expense.getID());
     }
-    m_expenses.erase(m_expenses.begin() + row, m_expenses.begin() + row + count);
+    expenses_.erase(expenses_.begin() + row, expenses_.begin() + row + count);
     endRemoveRows();
     return true;
 }

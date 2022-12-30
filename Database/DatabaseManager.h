@@ -19,9 +19,9 @@ public:
     explicit DatabaseManager(const QString& path = QString(getenv("HOME")) + "/Database/budget.db");
     static void debugQuery(const QSqlQuery& query);
     ~DatabaseManager();
-    static DatabaseManager& instance();
+    static DatabaseManager& getInstance();
 
-    const ExpenseDao m_expenseDao;
+    const ExpenseDao expenseDao_;
     const IncomeDao m_incomeDao;
     const CategoryDao categoryDao_;
     ExpenseAnalysis m_expenseAnalysis;
@@ -30,7 +30,7 @@ public:
 private:
     void updateDatabase();
 
-    QSqlDatabase m_database;
+    QSqlDatabase database_;
 };
 
 #endif
