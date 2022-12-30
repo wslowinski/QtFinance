@@ -12,6 +12,8 @@ namespace Ui {
 class ExpenseDialog;
 }
 
+class CategoryModel;
+
 class ExpenseDialog : public QDialog
 {
     Q_OBJECT
@@ -26,6 +28,7 @@ private slots:
     void setting();
     void download();
     void filter(int index);
+    void addCategory();
 
 private:
     Ui::ExpenseDialog *ui;
@@ -33,6 +36,7 @@ private:
     std::vector<std::pair<QString, QString>> categoriesArray;
     QStringList m_list;
     Currencies::Rates m_rates;
+    CategoryModel* category_model_;
 
     void init();
 };

@@ -350,6 +350,19 @@
     </property>
    </widget>
   </widget>
+  <widget class="QPushButton" name="btnAddCategory">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>270</y>
+     <width>101</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add Category</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>

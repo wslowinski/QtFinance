@@ -2,16 +2,23 @@
 #include "Class/Currencies.h"
 #include "ui_ExpenseDialog.h"
 #include "Widget/ExpenseWidget.h"
+#include "Dialog/CategoryDialog.h"
+#include "Model/CategoryModel.h"
 
 ExpenseDialog::ExpenseDialog(Expense& expense, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ExpenseDialog),
-    m_expense(expense)
+    m_expense(expense),
+    category_model_(new CategoryModel(this))
 {
     ui->setupUi(this);
     connect(ui->btnBox, &QDialogButtonBox::accepted, this, &ExpenseDialog::accept);
     connect(ui->btnBox, &QDialogButtonBox::rejected, this, &ExpenseDialog::reject);
+    connect(ui->btnAddCategory, &QPushButton::clicked, this, &ExpenseDialog::addCategory);
     init();
+
+    ui->cbCategory->setModel(category_model_);
+    ui->cbCategory->setModelColumn(1);
 }
 
 ExpenseDialog::~ExpenseDialog()
@@ -95,4 +102,16 @@ void ExpenseDialog::download()
 void ExpenseDialog::filter(int index)
 {
     ui->dspRate->setValue(m_rates.at(index).second);
+}
+
+void ExpenseDialog::addCategory()
+{
+    Category category;
+    CategoryDialog dialog(category);
+    auto dialogCode = dialog.exec();
+    if(dialogCode == QDialog::Accepted)
+    {
+        QModelIndex createdIndex = category_model_->add(category);
+        ui->cbCategory->setCurrentIndex(createdIndex.row());
+    }
 }

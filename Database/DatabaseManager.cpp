@@ -5,6 +5,7 @@ DatabaseManager::DatabaseManager(const QString& path):
     m_incomeDao(m_database),
     m_expenseAnalysis(m_database),
     m_incomeAnalysis(m_database),
+    categoryDao_(m_database),
     m_database(QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "SQLITE")))
 {
     m_database.setDatabaseName(path);
@@ -68,6 +69,12 @@ void DatabaseManager::updateDatabase()
                         date DATE,\
                         exchangeRate FLOAT, \
                         comment VARCHAR(200))");
+        DatabaseManager::debugQuery(query);
+    }
+    if(!m_database.tables().contains("categories"))
+    {
+        QSqlQuery query(m_database);
+        query.exec("CREATE TABLE categories(id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(50))");
         DatabaseManager::debugQuery(query);
     }
 }
