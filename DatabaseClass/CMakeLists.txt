@@ -3,4 +3,5 @@ target_sources(QtFinance PRIVATE
     IncomeAnalysis.h IncomeAnalysis.cpp
     ExpenseDao.h ExpenseDao.cpp
     ExpenseAnalysis.h ExpenseAnalysis.cpp
+    CategoryDao.h CategoryDao.cpp
 )
