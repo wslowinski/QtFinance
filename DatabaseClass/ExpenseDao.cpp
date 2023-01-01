@@ -1,37 +1,38 @@
 #include "ExpenseDao.h"
+
 #include "Database/DatabaseManager.h"
 
 ExpenseDao::ExpenseDao(QSqlDatabase& database):
-    m_database(database)
+    database_(database)
 {
 }
 
 void ExpenseDao::add(Expense& expense) const
 {
-    QSqlQuery query(m_database);
-    query.prepare("INSERT INTO expenses(expense, currencyCode, category, \
+    QSqlQuery query(database_);
+    query.prepare("INSERT INTO expenses(expense, currencyCode, category_id, \
                    title, date, exchangeRate, comment) \
-                   VALUES (:expense, :currencyCode, :category, \
+                   VALUES (:expense, :currencyCode, :category_id, \
                    :title, :date, :exchangeRate, :comment)");
     query.bindValue(":expense", expense.getExpense());
     query.bindValue(":currencyCode", expense.getCurrencyCode());
-    query.bindValue(":category", expense.getCategory());
+    query.bindValue(":category", expense.getCategory().getId());
     query.bindValue(":title", expense.getTitle());
     query.bindValue(":date", expense.getDate());
     query.bindValue(":exchangeRate", expense.getExchangeRate());
     query.bindValue(":comment", expense.getComment());
     query.exec();
     DatabaseManager::debugQuery(query);
-    expense.setID(query.lastInsertId().toInt());
+    expense.setId(query.lastInsertId().toInt());
 }
 
-void ExpenseDao::update(Expense& expense) const
+void ExpenseDao::update(const Expense& expense) const
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(database_);
     query.prepare("UPDATE expenses SET \
                      expense = (:expense), \
                      currencyCode = (:currencyCode), \
-                     category = (:category), \
+                     category_id = (:category_id), \
                      title = (:title) \
                      date = (:date), \
                      exchangeRate = (:exchangeRate), \
@@ -39,7 +40,7 @@ void ExpenseDao::update(Expense& expense) const
                      WHERE id = (:id)");
     query.bindValue(":expense", expense.getExpense());
     query.bindValue(":currencyCode", expense.getCurrencyCode());
-    query.bindValue(":category", expense.getCategory());
+    query.bindValue(":category", expense.getCategory().getId());
     query.bindValue(":title", expense.getTitle());
     query.bindValue(":date", expense.getDate());
     query.bindValue(":exchangeRate", expense.getExchangeRate());
@@ -50,7 +51,7 @@ void ExpenseDao::update(Expense& expense) const
 
 void ExpenseDao::remove(int id) const
 {
-    QSqlQuery query(m_database);
+    QSqlQuery query(database_);
     query.prepare("DELETE FROM expenses WHERE id = (:id)");
     query.bindValue(":id", id);
     query.exec();
@@ -60,31 +61,14 @@ void ExpenseDao::remove(int id) const
     DatabaseManager::debugQuery(query);
 }
 
-std::vector<Expense> ExpenseDao::getAll() const
+std::vector<Expense> ExpenseDao::getAll(const std::optional<QString>& sql) const
 {
-    QSqlQuery query("SELECT id, expense, currencyCode, category, title, \
-                     date, exchangeRate, comment FROM expenses", m_database);
-    query.exec();
-    DatabaseManager::debugQuery(query);
+    auto queryString = [&] {
+        if(sql.has_value()) return sql.value();
+        else return QString("SELECT * FROM expenses");
+    };
 
-    std::vector<Expense> array;
-    while(query.next())
-    {
-        array.emplace_back(query.value("id").toInt(),
-                          query.value("expense").toDouble(),
-                          query.value("currencyCode").toString(),
-                          query.value("category").toString(),
-                          query.value("title").toString(),
-                          query.value("date").toDate(),
-                          query.value("exchangeRate").toDouble(),
-                          query.value("comment").toString());
-    }
-    return array;
-}
-
-std::vector<Expense> ExpenseDao::getAll(const QString& sql) const
-{
-    QSqlQuery query(sql, m_database);
+    QSqlQuery query(queryString(), database_);
     query.exec();
     DatabaseManager::debugQuery(query);
 

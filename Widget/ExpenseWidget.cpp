@@ -15,7 +15,7 @@ ExpenseWidget::ExpenseWidget(QWidget* parent):
     ui(new Ui::ExpenseWidget),
     m_expenseModel(
         new ExpenseModel(this, filterRecordsByPeriod("expenses", getPeriodType(PeriodType::ALL)))),
-    m_database(DatabaseManager::instance()),
+    m_database(DatabaseManager::getInstance()),
     m_expenseAnalysis(m_database.m_expenseAnalysis)
 {
     init();
@@ -47,7 +47,23 @@ void ExpenseWidget::add()
 
 void ExpenseWidget::edit()
 {
+    if(ui->tabExpenses->selectionModel()->selectedIndexes().isEmpty())
+    {
+        return;
+    }
 
+    QModelIndex currentProductIndex = ui->tabExpenses->selectionModel()->selectedIndexes().first();
+
+    auto expense = qvariant_cast<Expense>(m_expenseModel->data(currentProductIndex, ExpenseModel::Roles::ID_ROLE));
+
+    ExpenseDialog dialog(expense, this);
+
+    auto dialogCode = dialog.exec();
+
+    if(dialogCode == QDialog::Accepted)
+    {
+        m_expenseModel->setData(currentProductIndex, QVariant::fromValue(expense), ExpenseModel::Roles::ID_ROLE);
+    }
 }
 
 void ExpenseWidget::remove()
@@ -69,6 +85,7 @@ void ExpenseWidget::init()
     ui->btnDelete->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/delete.png"));
     ui->btnDelete->setIconSize(QSize(25, 25));
 
+    connect(ui->btnEdit, &QPushButton::clicked, this, &ExpenseWidget::edit);
     ui->btnEdit->setIcon(QIcon("/home/vladyslav/Desktop/QtFinance/QtFinance/Images/edit.png"));
     ui->btnEdit->setIconSize(QSize(25, 25));
 
@@ -129,7 +146,7 @@ double ExpenseWidget::calculateSum()
     m_percentages = {};
     for (unsigned int i = 0; i < m_categoriesName.size(); i++)
     {
-        double sum = m_expenseAnalysis.getCategoryExpenseSum(m_categoriesName.at(i), ui->cbbPeriod->currentIndex());
+        double sum = 10.0;//m_expenseAnalysis.getCategoryExpenseSum(m_categoriesName.at(i), ui->cbbPeriod->currentIndex());
         expenses.push_back(sum);
         m_categoriesLabels.at(i)->setText(QString::number(sum, 'f', 2) + " zł");
         expensesSum += sum;

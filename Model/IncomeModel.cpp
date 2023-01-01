@@ -2,7 +2,7 @@
 
 IncomeModel::IncomeModel(QObject* parent, const QString& sql):
     QAbstractTableModel(parent),
-    m_database(DatabaseManager::instance()),
+    m_database(DatabaseManager::getInstance()),
     m_incomes(m_database.m_incomeDao.getAll(sql))
 {
 }

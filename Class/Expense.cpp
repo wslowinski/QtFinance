@@ -1,114 +1,79 @@
 #include "Expense.h"
 
 Expense::Expense():
-    m_id(0),
-    m_expense(0.0),
-    m_currencyCode("PLN"),
-    m_category(""),
-    m_title(""),
-    m_date(QDate::currentDate()),
-    m_exchangeRate(1.0),
-    m_comment("")
+    id_(-1),
+    expense_(0.0),
+    currencyCode_("PLN"),
+    category_(),
+    title_(""),
+    date_(QDate::currentDate()),
+    exchangeRate_(1.0),
+    comment_("")
 {
 }
 
 Expense::Expense(int id, double expense, const QString& currencyCode,
-    const QString& category, const QString& title, const QDate& date,
-    double exchangeRate, const QString& comment):
-    m_id(id),
-    m_expense(expense),
-    m_currencyCode(currencyCode),
-    m_category(category),
-    m_title(title),
-    m_date(date),
-    m_exchangeRate(exchangeRate),
-    m_comment(comment)
+                 const Category& category, const QString& title, const QDate& date,
+                 double exchangeRate, const QString& comment):
+    id_(id),
+    expense_(expense),
+    currencyCode_(currencyCode),
+    category_(category),
+    title_(title),
+    date_(date),
+    exchangeRate_(exchangeRate),
+    comment_(comment)
 {
 }
 
 Expense::Expense(double expense, const QString& currencyCode,
-    const QString& category, const QString& title, const QDate& date,
-    double exchangeRate, const QString& comment):
-    Expense(0, expense, currencyCode, category, title, date, exchangeRate, comment)
+                 const Category& category, const QString& title, const QDate& date,
+                 double exchangeRate, const QString& comment):
+    Expense(-1, expense, currencyCode, category, title, date, exchangeRate, comment)
 {
 }
 
-void Expense::setID(int id)
+void Expense::setId(int id)
 {
-    m_id = id;
-}
-
-void Expense::setExpense(double expense)
-{
-    m_expense = expense;
-}
-
-void Expense::setCurrencyCode(const QString& currencyCode)
-{
-    m_currencyCode = currencyCode;
-}
-
-void Expense::setCategory(const QString& category)
-{
-    m_category = category;
-}
-
-void Expense::setTitle(const QString& title)
-{
-    m_title = title;
-}
-
-void Expense::setDate(const QDate& date)
-{
-    m_date = date;
-}
-
-void Expense::setExchangeRate(double exchangeRate)
-{
-    m_exchangeRate = exchangeRate;
-}
-
-void Expense::setComment(const QString& comment)
-{
-    m_comment = comment;
+    id_ = id;
 }
 
 int Expense::getID() const
 {
-    return m_id;
+    return id_;
 }
 
 double Expense::getExpense() const
 {
-    return m_expense;
+    return expense_;
 }
 
-QString Expense::getCurrencyCode() const
+const QString& Expense::getCurrencyCode() const
 {
-    return m_currencyCode;
+    return currencyCode_;
 }
 
-QString Expense::getCategory() const
+const Category& Expense::getCategory() const
 {
-    return m_category;
+    return category_;
 }
 
-QString Expense::getTitle() const
+const QString& Expense::getTitle() const
 {
-    return m_title;
+    return title_;
 }
 
-QDate Expense::getDate() const
+const QDate& Expense::getDate() const
 {
-    return m_date;
+    return date_;
 }
 
 double Expense::getExchangeRate() const
 {
-    return m_exchangeRate;
+    return exchangeRate_;
 }
 
-QString Expense::getComment() const
+const QString& Expense::getComment() const
 {
-    return m_comment;
+    return comment_;
 }

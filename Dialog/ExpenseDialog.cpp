@@ -48,21 +48,6 @@ void ExpenseDialog::init()
     ui->dsbExpense->setValue(m_expense.getExpense());
     const QString& path = "/home/vladyslav/Desktop/QtFinance/QtFinance/Images/";
 
-    categoriesArray.push_back(std::make_pair(path + "beauty.png", "Beauty"));
-    categoriesArray.push_back(std::make_pair(path + "bills.png", "Bills"));
-    categoriesArray.push_back(std::make_pair(path + "drugstore.png", "Drugstore"));
-    categoriesArray.push_back(std::make_pair(path + "fashion.png", "Fashion"));
-    categoriesArray.push_back(std::make_pair(path + "free_time.png", "Free Time"));
-    categoriesArray.push_back(std::make_pair(path + "groceries.png", "Groceries"));
-    categoriesArray.push_back(std::make_pair(path + "health.png", "Health"));
-    categoriesArray.push_back(std::make_pair(path + "home_appliances.png", "Home appliances"));
-    categoriesArray.push_back(std::make_pair(path + "restaurants.png", "Restaurants"));
-    categoriesArray.push_back(std::make_pair(path + "transport.png", "Transport"));
-    categoriesArray.push_back(std::make_pair(path + "no_category.png", "No Category"));
-    for (unsigned int i = 0; i < categoriesArray.size(); i++)
-    {
-        ui->cbCategory->addItem(QIcon(categoriesArray[i].first), categoriesArray[i].second);
-    }
     ui->edtTitle->setText(m_expense.getTitle());
     ui->dtDate->setDate(m_expense.getDate());
 

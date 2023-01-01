@@ -4,7 +4,7 @@
 
 CategoryModel::CategoryModel(QObject* parent) :
     QAbstractTableModel(parent),
-    database_(DatabaseManager::instance()),
+    database_(DatabaseManager::getInstance()),
     categories_{database_.categoryDao_.getAll()}
 {
 

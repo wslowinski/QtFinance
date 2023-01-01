@@ -13,7 +13,7 @@ IncomeWidget::IncomeWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::IncomeWidget),
     m_incomeModel(new IncomeModel(this, filterRecordsByPeriod("incomes", getPeriodType(PeriodType::ALL)))),
-    m_database(DatabaseManager::instance()),
+    m_database(DatabaseManager::getInstance()),
     m_incomeAnalysis(m_database.m_incomeAnalysis)
 {
     init();

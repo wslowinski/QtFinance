@@ -7,7 +7,7 @@
 
 class QSqlDatabase;
 
-class CategoryDao
+class CategoryDao final
 {
 public:
     explicit CategoryDao(QSqlDatabase& database);
