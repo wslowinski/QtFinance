@@ -27,11 +27,6 @@ ExpenseWidget::~ExpenseWidget()
     delete ui;
 }
 
-void ExpenseWidget::setModel(ExpenseModel* model)
-{
-    ui->tabExpenses->setModel(model);
-}
-
 void ExpenseWidget::add()
 {
     Expense expense;
@@ -42,7 +37,8 @@ void ExpenseWidget::add()
         QModelIndex createdIndex = m_expenseModel->add(expense);
         ui->tabExpenses->setCurrentIndex(createdIndex);
     }
-    ui->lblTotal->setText(QVariant(calculateSum()).toString() + " zł");
+
+    ui->lblTotalNumber->setText(QVariant(m_expenseModel->calculateSum()).toString() + " zł");
 }
 
 void ExpenseWidget::edit()
@@ -64,6 +60,8 @@ void ExpenseWidget::edit()
     {
         m_expenseModel->setData(currentProductIndex, QVariant::fromValue(expense), ExpenseModel::Roles::ID_ROLE);
     }
+
+    ui->lblTotalNumber->setText(QVariant(m_expenseModel->calculateSum()).toString() + " zł");
 }
 
 void ExpenseWidget::remove()
@@ -71,7 +69,7 @@ void ExpenseWidget::remove()
     unsigned int currentRow = ui->tabExpenses->currentIndex().row();
     !m_expenseModel->removeRows(currentRow, 1) ?
         showMessage(MSG_CANNOT_DELETE_ROW) : showMessage(MSG_DELETE_ROW);
-    ui->lblTotal->setText(QString::number(calculateSum()) + " zł");
+    ui->lblTotalNumber->setText(QVariant(m_expenseModel->calculateSum()).toString() + " zł");
 }
 
 void ExpenseWidget::init()
@@ -103,21 +101,10 @@ void ExpenseWidget::init()
     connect(ui->cbbPeriod, &QComboBox::currentIndexChanged, this, &ExpenseWidget::setting);
     ui->dtTo->setDate(QDate::currentDate());
 
-    setModel(m_expenseModel);
+    ui->tabExpenses->setModel(m_expenseModel);
     Style::setTableViewStyle(ui->tabExpenses);
 
-    m_categoriesName = {"Beauty", "Bills", "Drugstore", "Fashion", "Free Time",
-                      "Groceries", "Health", "Home appliances", "Restaurants",
-                      "Transport", "No Category"};
-    m_categoriesLabels = {ui->lblBeauty, ui->lblBills, ui->lblDrugstore,
-                        ui->lblFashion, ui->lblFreeTime, ui->lblGroceries,
-                        ui->lblHealth, ui->lblHomeAppliances, ui->lblRestaurants,
-                        ui->lblTransport, ui->lblNoCategory};
-    m_categoriesPercentages = {ui->lblBeautyPercentage, ui->lblBillsPercentage, ui->lblDrugstorePercentage,
-                             ui->lblFashionPercentage, ui->lblFreeTimePercentage, ui->lblGroceriesPercentage,
-                             ui->lblHealthPercentage, ui->lblHomeAppliancesPercentage, ui->lblRestaurantsPercentage,
-                             ui->lblTransportPercentage, ui->lblNoCategoryPercentage};
-    ui->lblTotal->setText(QVariant(calculateSum()).toString() + " zł"); 
+    ui->lblTotalNumber->setText(QVariant(m_expenseModel->calculateSum()).toString() + " zł");
 }
 
 
@@ -135,31 +122,8 @@ void ExpenseWidget::filter(int index)
                 new ExpenseModel(this, filterRecordsByPeriod("expenses", index)):
                 new ExpenseModel(this, filterRecordsByPeriod("expenses", index,
                     ui->dtFrom->date(), ui->dtTo->date()));
-    ui->lblTotal->setText(QVariant(calculateSum()).toString() + " zł");
-    setModel(m_expenseModel);
-}
-
-double ExpenseWidget::calculateSum()
-{
-    double expensesSum = 0.;
-    std::vector<double> expenses;
-    m_percentages = {};
-    for (unsigned int i = 0; i < m_categoriesName.size(); i++)
-    {
-        double sum = 10.0;//m_expenseAnalysis.getCategoryExpenseSum(m_categoriesName.at(i), ui->cbbPeriod->currentIndex());
-        expenses.push_back(sum);
-        m_categoriesLabels.at(i)->setText(QString::number(sum, 'f', 2) + " zł");
-        expensesSum += sum;
-    }
-    for (unsigned int i = 0; i < expenses.size(); i++)
-    {
-        double percentage = (expensesSum != 0.) ? expenses.at(i) / expensesSum * 100. : 0.;
-        m_percentages.push_back(percentage);
-        m_categoriesPercentages.at(i)->setText(QString::number(percentage, 'f', 2) + " %");
-    }
-    this->update();
-    m_expensesSum = expensesSum;
-    return expensesSum;
+    ui->lblTotalNumber->setText(QVariant(m_expenseModel->calculateSum()).toString() + " zł");
+    ui->tabExpenses->setModel(m_expenseModel);
 }
 
 int ExpenseWidget::getCurrentID()

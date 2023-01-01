@@ -141,6 +141,17 @@ QHash<int, QByteArray> ExpenseModel::roleNames() const
     return roles;
 }
 
+double ExpenseModel::calculateSum()
+{
+    double sum{};
+
+    for(const auto& elem : expenses_) {
+        sum += elem.getExpense();
+    }
+
+    return sum;
+}
+
 bool ExpenseModel::isValidIndex(const QModelIndex& index) const
 {
     return index.isValid() && index.row() < rowCount();

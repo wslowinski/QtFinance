@@ -20,7 +20,6 @@ public:
     explicit ExpenseWidget(QWidget* parent = nullptr);
     ~ExpenseWidget();
 
-    void setModel(ExpenseModel* model);
     int getCurrentID();
 
 private slots:
@@ -42,7 +41,6 @@ private:
     double m_expensesSum;
 
     void init();
-    double calculateSum();
     void paintEvent(QPaintEvent *event);
     double getPie(double percentage);
 };
