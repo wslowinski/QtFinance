@@ -25,6 +25,7 @@ public:
     };
 
     explicit ExpenseModel(QObject* parent = nullptr, const QString& sql = "");
+
     QModelIndex add(const Expense& expense);
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
@@ -33,6 +34,8 @@ public:
     bool setData(const QModelIndex& index, const QVariant& value, int role) override;
     bool removeRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;
     QHash<int, QByteArray> roleNames() const override;
+
+    double calculateSum();
 
 private:
     bool isValidIndex(const QModelIndex& index) const;
